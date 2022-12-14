@@ -76,8 +76,28 @@ int main()
 	cout << zona2 << endl;
 	cout << zona3 << endl;*/
 
+	Eveniment eveniment;
+	Bilet bilet;
+	Locatie locatie;
+	Zona zona;
+	
+	//check class Eveniment
+	Eveniment::setNrBileteDisponibile(2000);
+	//cin >> eveniment;
+	//cout << eveniment;
+	eveniment.setDenumire(nullptr);
+	eveniment.setZi(0);
+	eveniment.setLuna(0);
+	eveniment.setAn(-1);
+	//eveniment.evenimentRatat(32, 0, 2022);
+	//eveniment.epuizareBilete(20);
+
+
+
+	return 0; // stop debugging (end of example)
+
 	Eveniment ev((char*)"meci", 10, 2, 2023, "20:00", 1);
-	ev.zileRamase(14,12,2022);
+	ev.evenimentRatat(14,12,2022);
 	ev.epuizareBilete(2);
 
 	Bilet b("123", "Normal", 23);
