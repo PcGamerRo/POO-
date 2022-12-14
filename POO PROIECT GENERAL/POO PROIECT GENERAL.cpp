@@ -7,12 +7,10 @@
 
 using namespace std;
 
-int Eveniment::nrBileteDisponibile = 20;
+int Eveniment::nrBileteDisponibile = 200;
 
 int main()
 {
-	int* p = new int[3]{ 20,10,10 };
-
 	//Zona zona1("peluza", 50, 5);
 	//Zona zona2("tribuna1", 120, 4);
 	//Zona zona3("tribuna2", 160, 4);
@@ -80,61 +78,80 @@ int main()
 
 	Eveniment ev((char*)"meci", 10, 2, 2023, "20:00", 1);
 	ev.zileRamase(14,12,2022);
+	ev.epuizareBilete(2);
+
+	Bilet b("123", "Normal", 23);
+	b.checkValoare(10);
+	b.aplicareReducereGenerala(23);
+
+	Locatie l("Stadion Craiova", 1, 500);
+	cout << endl << l.locuriNeutilizate();
+	l.acordareRating(5);
+	l.acordareRating(1.5);
+	cout << endl << l.getRating();
+	
+	cout << endl;
+	int* p = new int[200];
+	int* locuri = new int[3]{ 5,2,3 };
+	for (int i = 0; i < 200; i++) p[i] = 1;
+	Zona z("zona 1", 200, 10, p);
+	cout << endl << z.locuriPerRand();
+	z.eliberareLocuri(locuri, 3);
 
 	//MENIU
 	bool switch_on = true;
 
-	do {
-		switch (switch_on)
-		{
-		case 1: {
-			cout << "-- DETALII EVENIMENT -- " << endl;
-			Eveniment ev1; //pentru switch am nevoie de vector de obiecte, nu e bine daca il las asa
-			cin >> ev1;
-			cout << endl;
+	//do {
+	//	switch (switch_on)
+	//	{
+	//	case 1: {
+	//		cout << "-- DETALII EVENIMENT -- " << endl;
+	//		Eveniment ev1; //pentru switch am nevoie de vector de obiecte, nu e bine daca il las asa
+	//		cin >> ev1;
+	//		cout << endl;
 
-			cout << "-- DETALII BILETE -- " << endl;
-			Bilet* b1 = new Bilet[ev1.getNrCategorii()];
-			for (int i = 0; i < ev1.getNrCategorii(); i++) {
-				cout << endl << "bilet " << i + 1 << ": " << endl;
-				cin >> b1[i];
-			}
-			cout << endl;
+	//		cout << "-- DETALII BILETE -- " << endl;
+	//		Bilet* b1 = new Bilet[ev1.getNrCategorii()];
+	//		for (int i = 0; i < ev1.getNrCategorii(); i++) {
+	//			cout << endl << "bilet " << i + 1 << ": " << endl;
+	//			cin >> b1[i];
+	//		}
+	//		cout << endl;
 
-			cout << "-- DETALII LOCATIE -- " << endl;
-			Locatie loc1;
-			cin >> loc1;
-			cout << endl;
+	//		cout << "-- DETALII LOCATIE -- " << endl;
+	//		Locatie loc1;
+	//		cin >> loc1;
+	//		cout << endl;
 
-			cout << "--DETALII ZONE -- " << endl;
-			Zona* z1 = new Zona[loc1.getNrZone()];
-			for (int i = 0; i < loc1.getNrZone(); i++) {
-				cout << endl << "zona " << i + 1 << ": " << endl;
-				cin >> z1[i];
-			}
+	//		cout << "--DETALII ZONE -- " << endl;
+	//		Zona* z1 = new Zona[loc1.getNrZone()];
+	//		for (int i = 0; i < loc1.getNrZone(); i++) {
+	//			cout << endl << "zona " << i + 1 << ": " << endl;
+	//			cin >> z1[i];
+	//		}
 
 
-			cout << endl << endl << endl << "Iata informatiile furnizate de dvs: " << endl << endl;
+	//		cout << endl << endl << endl << "Iata informatiile furnizate de dvs: " << endl << endl;
 
-			cout << ev1 << endl;
-			for (int i = 0; i < ev1.getNrCategorii(); i++) {
-				cout << b1[i] << endl;
-			}
-			cout << loc1 << endl;
-			for (int i = 0; i < loc1.getNrZone(); i++) {
-				cout << z1[i];
-			}
-		}
-		case 0:
-			cout << "Multumim pentru timpul acordat, o zi frumoasa!";
-		default:
-			cout << "nu a fost recunoscuta comanda!" << endl;
-			cout << "doriti sa reincercati? true(1)/false(0):   ";
-			cin >> switch_on;
-			break;
-		}
-		cout << endl << endl << endl << "Doriti sa inregistrati un nou eveniment? true(1)/false(0):   ";
-		cin >> switch_on;
-	} while (switch_on == true);
+	//		cout << ev1 << endl;
+	//		for (int i = 0; i < ev1.getNrCategorii(); i++) {
+	//			cout << b1[i] << endl;
+	//		}
+	//		cout << loc1 << endl;
+	//		for (int i = 0; i < loc1.getNrZone(); i++) {
+	//			cout << z1[i];
+	//		}
+	//	}
+	//	case 0:
+	//		cout << "Multumim pentru timpul acordat, o zi frumoasa!";
+	//	default:
+	//		cout << "nu a fost recunoscuta comanda!" << endl;
+	//		cout << "doriti sa reincercati? true(1)/false(0):   ";
+	//		cin >> switch_on;
+	//		break;
+	//	}
+	//	cout << endl << endl << endl << "Doriti sa inregistrati un nou eveniment? true(1)/false(0):   ";
+	//	cin >> switch_on;
+	//} while (switch_on == true);
 	return 0;
 }

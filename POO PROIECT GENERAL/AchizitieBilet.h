@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Bilet.h"
 #include "Eveniment.h"
+
 using namespace std;
 
 class AchizitieBilet
@@ -10,11 +11,26 @@ class AchizitieBilet
 	int nrTipuriBilete;
 	int totalBilete;
 public:
-	AchizitieBilet() : numarBilete(nullptr), totalBilete(0) { }
-	AchizitieBilet(int* numarBilete) {
+	//metoda generica #1
+	float valoareAchizitie(Bilet* x) {
+		float sum = 0;
 		int len = sizeof(numarBilete) / sizeof(int) + 1;
-		this->numarBilete = new int[len];
 		for (int i = 0; i < len; i++) {
+			sum = sum + numarBilete[i] * x[i].getPret();
+		}
+		return sum;
+	}
+
+	//metoda generica #2 - metoada statica
+	void epuizareBilete(int x) {
+		Eveniment::setNrBileteDisponibile(Eveniment::getNrBilete() - x);
+	}
+
+	AchizitieBilet() : numarBilete(nullptr), totalBilete(0) { }
+	AchizitieBilet(int* numarBilete, int nrTipuri) {
+		this->nrTipuriBilete = nrTipuri;
+		this->numarBilete = new int[nrTipuri];
+		for (int i = 0; i < nrTipuri; i++) {
 			this->numarBilete[i] = numarBilete[i];
 			totalBilete += numarBilete[i];
 		}
@@ -46,19 +62,4 @@ public:
 		}
 	}
 
-
-	//metoda generica #1
-	float valoareAchizitie(Bilet *x) {
-		float sum = 0;
-		int len = sizeof(numarBilete) / sizeof(int) + 1;
-		for (int i = 0; i < len ; i++) {
-			sum = sum + numarBilete[i] * x[i].getPret();
-		}
-		return sum;
-	}
-
-	//metoda generica #2 - metoada statica
-	void epuizareBilete(int x) {
-		Eveniment::setNrBileteDisponibile(Eveniment::getNrBilete() - x);
-	}
 };

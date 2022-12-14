@@ -16,7 +16,11 @@ public:
 		return nrLocuri / nrRanduri;
 	}
 	//metoda #2
-
+	void eliberareLocuri(int *locuri, int n) {
+		for (int i = 0; i < n; i++) {
+			locOcupat[locuri[i]] = 0;
+		}
+	}
 
 	Zona() {
 		denumire = "necunoscuta";

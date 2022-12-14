@@ -10,12 +10,12 @@ class Bilet
 	float pret;
 public:
 	//metoda #1
-	float checkValoare(int cantitate) {
-		return pret * cantitate;
+	void checkValoare(int cantitate) {
+		cout << pret * cantitate;
 	}
 	//metoda #2
 	void aplicareReducereGenerala(float procente) {
-		pret = pret - pret * procente;
+		pret = pret - pret * procente / 100;
 	}
 
 	Bilet() : IdBilet("x") {
