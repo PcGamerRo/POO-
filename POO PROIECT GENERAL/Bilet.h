@@ -54,6 +54,18 @@ public:
 		pret = x.pret;
 	}
 
+	Bilet operator+(int i) {
+		Bilet& x = *this;
+		x.pret += i;
+		return x;
+	}
+
+	Bilet operator-(int i) {
+		Bilet& x = *this;
+		x.pret -= i;
+		return x;
+	}
+
 	Bilet operator=(const Bilet& i) {
 		Bilet& x = *this;
 		//x.IdBilet = i.IdBilet;

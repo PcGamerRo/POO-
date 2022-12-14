@@ -105,6 +105,21 @@ public:
 		nrRanduri = x.nrRanduri;
 	}
 
+	int operator[](int index)
+	{
+		if (index >= 0 && index < nrLocuri)
+		{
+			return locOcupat[index];
+		}
+		else return -1;
+	}
+
+	Zona operator+(int i) { // incrementare cu valoarea i a numarului de locuri ale zonei
+		Zona& x = *this;
+		x.nrLocuri += i;
+		return x;
+	}
+
 	Zona operator=(const Zona& i) {
 		Zona& x = *this;
 		x.denumire = i.denumire;

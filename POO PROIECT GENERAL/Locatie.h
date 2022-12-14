@@ -11,7 +11,7 @@ class Locatie
 	string denumireLocatie;
 	int nrZone=1;
 	float ratingLocatie=5;
-	int index;
+	int index = 1; //folosit pentru a contoriza rating-urile primite
 public:
 	//metoda #1
 	int locuriNeutilizate() { //in cazul in care sunt mai putine bilete decat locuri disponibile
@@ -87,4 +87,21 @@ public:
 		nrZone = x.nrZone;
 		nrLocuriDisponibile = x.nrLocuriDisponibile;
 	}
+
+	bool operator==(const Locatie y) {
+		Locatie& x = *this;
+		if (x.nrLocuriDisponibile == y.nrLocuriDisponibile)
+			if (x.denumireLocatie == y.denumireLocatie)
+				if (x.nrLocuriDisponibile == y.nrLocuriDisponibile)
+					if (x.nrZone == y.nrZone)
+						if(x.ratingLocatie==y.ratingLocatie)
+							return true;
+		return false;
+	}
+
+	explicit operator int()
+	{
+		return ratingLocatie;
+	}
+
 };

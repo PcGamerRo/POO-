@@ -9,7 +9,6 @@ class Eveniment
 {
 	char* denumireEveniment;
 	static int nrBileteDisponibile;
-	const int nr_init_bilete = 0;
 	//string data;
 	int zi;
 	int luna;
@@ -42,7 +41,7 @@ public:
 	}
 
 	//Bilet* bilete;
-	Eveniment() : nr_init_bilete(0) {
+	Eveniment() {
 		denumireEveniment = new char[11];
 		strcpy_s(denumireEveniment, 11, "Necunoscut");
 
@@ -56,7 +55,7 @@ public:
 
 		nrCategoriiBilete = 0;
 	}
-	Eveniment(char* denumire, int zi, int luna, int an, string ora, int nrCategorii/*, const Bilet* bilete*/) : nr_init_bilete(nrBileteDisponibile) {
+	Eveniment(char* denumire, int zi, int luna, int an, string ora, int nrCategorii/*, const Bilet* bilete*/) {
 		denumireEveniment = new char[strlen(denumire) + 1];
 		strcpy_s(denumireEveniment, strlen(denumire) + 1, denumire);
 
@@ -105,7 +104,6 @@ public:
 	int getZi() { return zi; }
 	int getLuna() { return luna; }
 	int getAn() { return an; }
-	int getInit() { return nr_init_bilete; }
 
 	string getOra() { return ora; }
 	int getNrCategorii() { return nrCategoriiBilete; }
@@ -153,6 +151,41 @@ public:
 		an = x.an;
 		ora = x.ora;
 	}
+
+	bool operator>(Eveniment& y) { //verif ce eveniment are loc mai tarziu
+		Eveniment& x = *this;
+		if (x.an > y.an) {
+			return true;
+		}
+		else if (x.luna > y.luna)
+			return true;
+		else if (x.zi > y.zi)
+			return true;
+		return false;
+	}
+
+	Eveniment operator++() { //pre incrementare
+		nrBileteDisponibile++;
+		return *this;
+	}
+
+	Eveniment operator++(int i) { //post incrementare
+		Eveniment& x = *this;
+		x.nrBileteDisponibile++;
+		return x;
+	}
+
+	Eveniment operator--() { //pre decrementare
+		nrBileteDisponibile--;
+		return *this;
+	}
+
+	Eveniment operator--(int i) { //pre decrementare
+		Eveniment& x = *this;
+		x.nrBileteDisponibile--;
+		return x;
+	}
+
 
 	//operator =
 	//Eveniment operator=(const Eveniment i) {
