@@ -9,39 +9,71 @@ class Eveniment
 {
 	char* denumireEveniment;
 	static int nrBileteDisponibile;
-	string data;
+	//string data;
+	int zi;
+	int luna;
+	int an;
 	string ora;
-	//int* ListaPreturi;
 	int nrCategoriiBilete;
 public:
-	Bilet* bilete;
+	//metoda #1
+	void zileRamase(int x, int y, int z) { // cate zile mai sunt pana la eveniment (aproximativ)
+		//x-zi y-luna z-an -> data curenta
+		int zileR, luniR, aniR; //R-ramase/ramasi
+		if (z > an || (y > luna && z == an) || (x > zi && y == luna && z == an))
+			cout << "Evenimentul a trecut!" << endl;
+		else {
+			aniR = an - z - 1;
+			if (luna >= y)
+				luniR = luna - y;
+			else
+				luniR = 12 - y + luna;
+			if (zi > x)
+				zileR = zi - x;
+			else
+				zileR = 31 - x + zi;
+			cout << zileR << " zile; " << luniR << "luni; " << aniR << "ani; " << endl;
+		}
+	}
+	//metoda #2 ( statica )
+	static void epuizareBilete(int x) {
+		nrBileteDisponibile -= x;
+	}
+
+	//Bilet* bilete;
 	Eveniment() {
 		denumireEveniment = new char[11];
 		strcpy_s(denumireEveniment, 11, "Necunoscut");
 
 		nrBileteDisponibile = 0;
 
-		data = "necunoscuta";
+		zi = 1;
+		luna = 1;
+		an = 2023;
+		
 		ora = "necunoscuta";
 
 		nrCategoriiBilete = 0;
 	}
-	Eveniment(char* denumire, string data, string ora, int nrCategorii, const Bilet* bilete) {
+	Eveniment(char* denumire, int zi, int luna, int an, string ora, int nrCategorii/*, const Bilet* bilete*/) {
 		denumireEveniment = new char[strlen(denumire) + 1];
 		strcpy_s(denumireEveniment, strlen(denumire) + 1, denumire);
 
-		this->data = data;
+		this->zi = zi;
+		this->luna = luna;
+		this->an = an;
+
 		this->ora = ora;
 
 		this->nrCategoriiBilete = nrCategorii;
 
-		if (nrCategoriiBilete > 0 && bilete != NULL) {
-			delete[] this->bilete;
-			this->bilete = new Bilet[nrCategoriiBilete];
-		}
-		for (int i = 0; i < nrCategoriiBilete; i++) {
-			this->bilete[i] = bilete[i];
-		}
+		//if (nrCategoriiBilete > 0 && bilete != NULL) {
+		//	delete[] this->bilete;
+		//	this->bilete = new Bilet[nrCategoriiBilete];
+		//}
+		//for (int i = 0; i < nrCategoriiBilete; i++) {
+		//	this->bilete[i] = bilete[i];
+		//}
 	}
 	~Eveniment() {
 		delete denumireEveniment;
@@ -59,15 +91,24 @@ public:
 		else throw exception("denumirea trebuie sa fie diferita de nullptr!");
 	}
 
-	void setData(string data) { this->data = data; }
+	void setZi(int x) { this->zi = x; }
+	void setLuna(int x) { this->luna = x; }
+	void setAn(int x) { this->an = x; }
+
 	void setOra(string ora) { this->ora = ora; }
 	static void setNrBileteDisponibile(int x) { nrBileteDisponibile = x; }
 
 	char* getDenumire() { return denumireEveniment; }
 	static int getNrBilete() { return nrBileteDisponibile; }
-	string getData() { return data; }
+	
+	int getZi() { return zi; }
+	int getLuna() { return luna; }
+	int getAn() { return an; }
+
 	string getOra() { return ora; }
 	int getNrCategorii() { return nrCategoriiBilete; }
+
+	static int getBileteDisp() { return Eveniment::nrBileteDisponibile; }
 
 	friend istream& operator>>(istream& in, Eveniment &x) {
 		cout << "Denumire eveniment: ";
@@ -79,7 +120,14 @@ public:
 		in >> x.nrBileteDisponibile;
 		cout << "Data: ";
 		in.get();
-		getline(in, x.data);
+		
+		cout << "Zi: ";
+		in >> x.zi;
+		cout << "Luna: ";
+		in >> x.luna;
+		cout << "An: ";
+		in >> x.an;
+
 		cout << "Ora: ";
 		getline(in, x.ora);
 		cout << "Numar categorii de bilete (VIP/NORMAL/etc...): ";
@@ -90,7 +138,7 @@ public:
 	friend ostream& operator<<(ostream& out, Eveniment x) {
 		out << "Denumire eveniment: " << x.denumireEveniment << endl;
 		out << "Numar bilete disponibile: " << x.nrBileteDisponibile << endl;
-		out << "Data: " << x.data << endl;
+		out << "Data: " << x.zi << "-" << x.luna << "-" << x.an << endl;
 		out << "Ora: " << x.ora << endl;
 		return out;
 	}
@@ -98,7 +146,9 @@ public:
 	Eveniment(const Eveniment& x) {
 		denumireEveniment = new char[strlen(x.denumireEveniment) + 1];
 		strcpy_s(denumireEveniment, strlen(x.denumireEveniment) + 1, x.denumireEveniment);
-		data = x.data;
+		zi = x.zi;
+		luna = x.luna;
+		an = x.an;
 		ora = x.ora;
 	}
 

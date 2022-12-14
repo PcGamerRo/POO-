@@ -9,6 +9,15 @@ class Bilet
 	string tipBilet;
 	float pret;
 public:
+	//metoda #1
+	float checkValoare(int cantitate) {
+		return pret * cantitate;
+	}
+	//metoda #2
+	void aplicareReducereGenerala(float procente) {
+		pret = pret - pret * procente;
+	}
+
 	Bilet() : IdBilet("x") {
 		tipBilet = "Necunoscut";
 		pret = 0.0;

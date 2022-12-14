@@ -10,22 +10,28 @@ class Locatie
 	string denumireLocatie;
 	int nrZone=1;
 public:
-	Zona* zone;
+	//metoda #1
+	int locuriNeutilizate() { //in cazul in care sunt mai putine bilete decat locuri disponibile
+		return nrLocuriDisponibile - Eveniment::getBileteDisp();
+	}
+	//metoda #2
 
+
+	//Zona* zone;
 	Locatie() {
 		denumireLocatie = "necunoscuta";
 		nrZone = 1;
 	}
-	Locatie(string denumire, int nr, const Zona* zone) {
+	Locatie(string denumire, int nr/*, const Zona* zone*/) {
 		denumireLocatie = denumire;
 		nrZone = nr;
-		if (zone != NULL && nrZone > 0) {
-			delete[] this->zone;
-			this->zone = new Zona[nrZone];
-		}
-		for (int i = 0; i < nrZone; i++) {
-			this->zone[i] = zone[i];
-		}
+		//if (zone != NULL && nrZone > 0) {
+		//	delete[] this->zone;
+		//	this->zone = new Zona[nrZone];
+		//}
+		//for (int i = 0; i < nrZone; i++) {
+		//	this->zone[i] = zone[i];
+		//}
 	}
 	void setDenumireLocatie(string denumire) { this->denumireLocatie = denumire; }
 	void setNrZone(int x) { this->nrZone = x; }

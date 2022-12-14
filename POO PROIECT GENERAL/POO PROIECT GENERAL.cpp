@@ -78,6 +78,9 @@ int main()
 	cout << zona2 << endl;
 	cout << zona3 << endl;*/
 
+	Eveniment ev((char*)"meci", 10, 2, 2023, "20:00", 1);
+	ev.zileRamase(14,12,2022);
+
 	//MENIU
 	bool switch_on = true;
 
@@ -134,4 +137,4 @@ int main()
 		cin >> switch_on;
 	} while (switch_on == true);
 	return 0;
-} 
+}

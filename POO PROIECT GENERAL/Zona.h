@@ -11,11 +11,18 @@ class Zona
 	int nrRanduri;
 	int* locOcupat; //se marcheaza cu 1-ocupat si 0-liber
 public:
+	//metoda #1
+	int locuriPerRand() {
+		return nrLocuri / nrRanduri;
+	}
+	//metoda #2
+
+
 	Zona() {
 		denumire = "necunoscuta";
 		nrLocuri = 1;
 		nrRanduri = 1;
-		locOcupat = new int[1]{ 1 };
+		locOcupat = new int[1]{ 0 };
 	}
 	Zona(string denumire, int nrL, int nrR, int* nrLoc) {
 		this->denumire = denumire;
@@ -27,7 +34,7 @@ public:
 		for (int i = 0; i < nrLocuri; i++) {
 			locOcupat[i] = nrLoc[i];
 		}
-		numarLocuriPeRand = getNumarLocuri_peRand();
+		//numarLocuriPeRand = getNumarLocuri_peRand();
 	}
 	
 	~Zona() { delete[] locOcupat;}
@@ -35,8 +42,8 @@ public:
 	void setDenumire(string denumire) { this->denumire = denumire; }
 	void setNrLocuri(int x) { this->nrLocuri = x; }
 	void setNrRanduri(int x) { this->nrRanduri = x; }
-	void setNrLocuri_peRand(int x) { this->numarLocuriPeRand = x; }
-	void setNumarLoc(int* x) {
+	//void setNrLocuri_peRand(int x) { this->numarLocuriPeRand = x; }
+	void setLocOcupat(int* x) {
 		if (locOcupat != nullptr)
 			delete[] locOcupat;
 		if (x != nullptr && nrRanduri > 0) {
@@ -50,10 +57,10 @@ public:
 	string getDenumire() { return denumire; }
 	int getNrL() { return nrLocuri; }
 	int getNrR() { return nrRanduri; }
-	int getNumarLocuri_peRand() {
-		numarLocuriPeRand = nrLocuri / nrRanduri;
-		return numarLocuriPeRand;
-	}
+	//int getNumarLocuri_peRand() {
+	//	numarLocuriPeRand = nrLocuri / nrRanduri;
+	//	return numarLocuriPeRand;
+	//}
 	int* getLocOcupat() { return locOcupat; }
 
 	friend istream& operator>>(istream& in, Zona& x) {
@@ -64,7 +71,15 @@ public:
 		in >> x.nrLocuri;
 		cout << "Numar randuri: ";
 		in >> x.nrRanduri;
-		x.numarLocuriPeRand = x.getNumarLocuri_peRand();
+		//x.numarLocuriPeRand = x.getNumarLocuri_peRand();
+		cout << "Locuri ocupate: 1-ocupat 0-liber: ";
+	/*	if (x.locOcupat != nullptr)
+			delete[] x.locOcupat;
+		x.locOcupat = new int[x.nrLocuri];
+		for (int i = 0; i < x.nrLocuri; i++) {
+			cout << "Locul " << i << ": ";
+			in >> x.locOcupat[i];
+		}*/
 		return in;
 	}
 
@@ -72,7 +87,11 @@ public:
 		out << "Denumire zona: " << x.denumire << endl;
 		out << "Numar locuri: " << x.nrLocuri << endl;
 		out << "Numar randuri: " << x.nrRanduri << endl;
-		out << "Numar locuri pe rand: " << x.getNumarLocuri_peRand() << endl;
+		//out << "Numar locuri pe rand: " << x.getNumarLocuri_peRand() << endl;
+		out << "Locuri ocupate: 1-ocupat 0-liber" << endl;
+		for (int i = 0; i < x.nrLocuri; i++) {
+			out << "locul i: " << x.locOcupat << endl;
+		}
 		return out;
 	}
 
@@ -88,6 +107,9 @@ public:
 		x.numarLocuriPeRand = i.numarLocuriPeRand;
 		x.nrLocuri = i.nrLocuri;
 		x.nrRanduri = i.nrRanduri;
+		for (int j = 0; j < x.nrLocuri; j++) {
+			x.locOcupat[j] = i.locOcupat[j];
+		}
 		return x;
 	}
 };
