@@ -9,6 +9,7 @@ class Eveniment
 {
 	char* denumireEveniment;
 	static int nrBileteDisponibile;
+	const int nr_init_bilete = 0;
 	//string data;
 	int zi;
 	int luna;
@@ -41,7 +42,7 @@ public:
 	}
 
 	//Bilet* bilete;
-	Eveniment() {
+	Eveniment() : nr_init_bilete(0) {
 		denumireEveniment = new char[11];
 		strcpy_s(denumireEveniment, 11, "Necunoscut");
 
@@ -55,7 +56,7 @@ public:
 
 		nrCategoriiBilete = 0;
 	}
-	Eveniment(char* denumire, int zi, int luna, int an, string ora, int nrCategorii/*, const Bilet* bilete*/) {
+	Eveniment(char* denumire, int zi, int luna, int an, string ora, int nrCategorii/*, const Bilet* bilete*/) : nr_init_bilete(nrBileteDisponibile) {
 		denumireEveniment = new char[strlen(denumire) + 1];
 		strcpy_s(denumireEveniment, strlen(denumire) + 1, denumire);
 
@@ -104,6 +105,7 @@ public:
 	int getZi() { return zi; }
 	int getLuna() { return luna; }
 	int getAn() { return an; }
+	int getInit() { return nr_init_bilete; }
 
 	string getOra() { return ora; }
 	int getNrCategorii() { return nrCategoriiBilete; }
