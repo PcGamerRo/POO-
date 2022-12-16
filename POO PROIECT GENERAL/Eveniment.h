@@ -93,12 +93,15 @@ public:
 	//setteri (validati)
 	void setDenumire(char* denumire) {
 		if (denumire != nullptr) {
+			if (strlen(denumire) == 0)
+				cout << "Denumirea trebuie sa aibe cel putin un caracter!";
+			else {
+				if (denumireEveniment != nullptr)
+					delete[] denumireEveniment;
 
-			if (denumireEveniment != nullptr)
-				delete[] denumireEveniment;
-
-			denumireEveniment = new char[strlen(denumire) + 1];
-			strcpy_s(denumireEveniment, strlen(denumire) + 1, denumire);
+				denumireEveniment = new char[strlen(denumire) + 1];
+				strcpy_s(denumireEveniment, strlen(denumire) + 1, denumire);
+			}
 		}
 		else cout << "denumirea trebuie sa fie diferita de nullptr!" << endl;
 	}

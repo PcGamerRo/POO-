@@ -13,40 +13,44 @@ int main()
 {
 	Eveniment event1; // it meets the requirements!
 	if (1 != 0) {
-		//cin >> event1;
-		cout << endl;
-		//cout << event1 << endl;
-		event1.setDenumire((char*)"concert killa fonic");
-		event1.setNrBileteDisponibile(2000);
-		event1.setZi(16);
-		event1.setLuna(12);
-		event1.setAn(2022);
-		event1.setTime(20, 00);
-		event1.setCategoriiBilete(2);
-		//cout << event1 << endl;
+		////cin >> event1;
+		//cout << endl;
+		////cout << event1 << endl;
+		//event1.setDenumire((char*)"");
+		//event1.setDenumire(nullptr);
+		//event1.setDenumire((char*)"concert killa fonic");
+		//event1.setNrBileteDisponibile(2000);
+		//event1.setZi(16);
+		//event1.setLuna(12);
+		//event1.setAn(2022);
+		//event1.setTime(20, 00);
+		//event1.setCategoriiBilete(2);
+		////cout << event1 << endl;
 
-		Eveniment event2 = event1;
-		cout << event2 << endl;
+		//Eveniment event2 = event1;
+		//cout << event2 << endl;
 
-		Eveniment event3((char*)"Concert Nane x Rava x Ian", 7, 1, 2023, 23, 00, 2);
-		cout << event3 << endl;
+		//Eveniment event3((char*)"Concert Nane x Rava x Ian", 7, 1, 2023, 23, 00, 2);
+		//cout << event3 << endl;
 
-		cout << (event2 > event3) << endl;
-		cout << (event3 > event2);
+		//cout << (event2 > event3) << endl;
+		//cout << (event3 > event2);
 
-		cout << event2 << endl;
+		//cout << event2 << endl;
 
-		//Eveniment event4 = ++event2;
-		////event4 = event2++;
+		////Eveniment event4 = ++event2;
+		//////event4 = event2++;
 
+		////cout << event4;
+		////cout << endl << event2 << endl;
+
+		//Eveniment event4;
+		//event4 = --event2;
 		//cout << event4;
 		//cout << endl << event2 << endl;
-
-		Eveniment event4;
-		event4 = --event2;
-		cout << event4;
-		cout << endl << event2 << endl;
 	}
+
+	Bilet bilet1;
 
 	return 0;
 }

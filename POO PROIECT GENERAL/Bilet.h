@@ -27,8 +27,16 @@ public:
 		pret = Pret;
 	}
 
-	void setTip(string tip) { this->tipBilet = tip; }
-	void setPret(float x) { this->pret = x; }
+	void setTip(string tip) { 
+		if (tip.length() < 1)
+			cout << "Tipul biletului trebuie sa aiba cel putin un caracter!";
+		this->tipBilet = tip; 
+	}
+	void setPret(float x) { 
+		if (x < 0)
+			cout << "Pretul nu poate fi negativ!";
+		this->pret = x; 
+	}
 
 	string getId() { return IdBilet; }
 	string getTip() { return tipBilet; }
