@@ -45,9 +45,9 @@ public:
 	}
 	//metoda #2 ( statica )
 	static void epuizareBilete(int x) {
-		if (x >= nrBileteDisponibile)
+		if (nrBileteDisponibile >= x)
 			nrBileteDisponibile -= x;
-		else cout << "Nu sunt suficiente bilete! valoarea maxima este: " << nrBileteDisponibile << endl;
+		else cout << endl << "Nu sunt suficiente bilete! valoarea maxima este: " << nrBileteDisponibile << endl << endl;
 	}
 
 	Eveniment() {
