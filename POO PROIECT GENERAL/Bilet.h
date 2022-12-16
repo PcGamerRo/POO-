@@ -44,10 +44,10 @@ public:
 
 	friend istream& operator>>(istream &in, Bilet &x){
 		cout << "Tip bilet:  ";
-		in.get();
 		getline(in, x.tipBilet);
 		cout << "Pret: ";
 		in >> x.pret;
+		in.get();
 		return in;
 	}
 
