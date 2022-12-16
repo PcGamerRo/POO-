@@ -9,17 +9,18 @@ class Eveniment
 {
 	char* denumireEveniment;
 	static int nrBileteDisponibile;
-	//date
+	int nrCategoriiBilete;
+	//Bilet* bilete;
+	//date:
 	int zi;
 	int luna;
 	int an;
-	//time
+	//time:
 	int ora;
 	int minute;
-	int nrCategoriiBilete;
 public:
 	//metoda #1
-	void evenimentRatat(int x, int y, int z) { // cate zile mai sunt pana la eveniment (aproximativ)
+	void evenimentRatat(int x, int y, int z) { 
 		//x-zi y-luna z-an -> data curenta
 		bool pass = true;
 		if (x > 31 || x < 1) {
@@ -41,19 +42,6 @@ public:
 				cout << "Evenimentul este astazi!" << endl;
 			else cout << "Evenimentul nu a inceput inca!" << endl;
 		}
-		//int zileR, luniR, aniR; //R- zile/luni/ani ramase
-		//else {
-		//	aniR = an - z - 1;
-		//	if (luna >= y)
-		//		luniR = luna - y;
-		//	else
-		//		luniR = 12 - y + luna;
-		//	if (zi > x)
-		//		zileR = zi - x;
-		//	else
-		//		zileR = 31 - x + zi;
-		//	cout << zileR << " zile; " << luniR << "luni; " << aniR << "ani; " << endl;
-		//}
 	}
 	//metoda #2 ( statica )
 	static void epuizareBilete(int x) {
@@ -62,22 +50,20 @@ public:
 		else cout << "Nu sunt suficiente bilete! valoarea maxima este: " << nrBileteDisponibile << endl;
 	}
 
-	//Bilet* bilete;
 	Eveniment() {
 		denumireEveniment = new char[11];
 		strcpy_s(denumireEveniment, 11, "Necunoscut");
-
-		nrBileteDisponibile = 0;
 
 		zi = 1;
 		luna = 1;
 		an = 2023;
 		
-		ora = "necunoscuta";
+		ora = 00;
+		minute = 00;
 
 		nrCategoriiBilete = 0;
 	}
-	Eveniment(char* denumire, int zi, int luna, int an, string ora, int nrCategorii/*, const Bilet* bilete*/) {
+	Eveniment(char* denumire, int zi, int luna, int an, int ora, int minute, int nrCategorii/*, const Bilet* bilete*/) {
 		if (denumire != nullptr) {
 			denumireEveniment = new char[strlen(denumire) + 1];
 			strcpy_s(denumireEveniment, strlen(denumire) + 1, denumire);
@@ -88,6 +74,7 @@ public:
 		this->an = an;
 
 		this->ora = ora;
+		this->minute = minute;
 
 		this->nrCategoriiBilete = nrCategorii;
 
@@ -114,6 +101,12 @@ public:
 			strcpy_s(denumireEveniment, strlen(denumire) + 1, denumire);
 		}
 		else cout << "denumirea trebuie sa fie diferita de nullptr!" << endl;
+	}
+	static void setNrBileteDisponibile(int x) {
+		if (x < 0)
+			cout << "Numarul de bilete disponibile nu poate fi negativ!";
+		else
+			nrBileteDisponibile = x;
 	}
 	void setZi(int x) { 
 		if (x > 31 || x < 1) {
@@ -143,12 +136,7 @@ public:
 		this->minute = minute;
 		}
 	}
-	static void setNrBileteDisponibile(int x) { 
-		if (x < 0)
-			cout << "Numarul de bilete disponibile nu poate fi negativ!";
-		else
-			nrBileteDisponibile = x; 
-	}
+	void setCategoriiBilete(int nr) { this->nrCategoriiBilete = nr; }
 	//getteri
 	char* getDenumire() { return denumireEveniment; }
 	static int getNrBilete() { return nrBileteDisponibile; }
@@ -169,16 +157,19 @@ public:
 		cout << "Numar bilete disponibile: ";
 		in >> x.nrBileteDisponibile;
 		
-		cout << "Zi: ";
+		cout << "Data: (numere intregi)" << endl;
+		cout << "-	Zi: ";
 		in >> x.zi;
-		cout << "Luna: ";
+		cout << "-	Luna: ";
 		in >> x.luna;
-		cout << "An: ";
+		cout << "-	An: ";
 		in >> x.an;
 
-		cout << "Ora: ";
-		in.get();
-		getline(in, x.ora);
+		cout << "Timpul: "<<endl;
+		cout << "-	Ora: ";
+		in >> x.ora;
+		cout << "-	Minute: ";
+		in >> x.minute;
 		cout << "Numar categorii de bilete (VIP/NORMAL/etc...): ";
 		in >> x.nrCategoriiBilete;
 		return in;
@@ -187,8 +178,17 @@ public:
 	friend ostream& operator<<(ostream& out, Eveniment x) {
 		out << "Denumire eveniment: " << x.denumireEveniment << endl;
 		out << "Numar bilete disponibile: " << x.nrBileteDisponibile << endl;
-		out << "Data: " << x.zi << "-" << x.luna << "-" << x.an << endl;
-		out << "Ora: " << x.ora << endl;
+		out << "Data: ";
+		if (x.zi < 10) out << "0" << x.zi;
+		else out << x.zi;
+		if (x.luna < 10) out << "-0" << x.luna;
+		else out << "-" << x.luna;
+		out<< "-" << x.an << endl;
+		out << "Timpul: ";
+		if (x.ora < 10) out << "0" << x.ora << ":";
+		else out << x.ora << ":";
+		if (x.minute < 10) out << "0" << x.minute << endl;
+		else out << x.minute << endl;
 		out << "Numar categorii de bilete (VIP/NORMAL/etc...): " << x.nrCategoriiBilete;
 		out << endl;
 		return out;
@@ -201,6 +201,8 @@ public:
 		luna = x.luna;
 		an = x.an;
 		ora = x.ora;
+		minute = x.minute;
+		nrBileteDisponibile = x.nrBileteDisponibile;
 		nrCategoriiBilete = x.nrCategoriiBilete;
 	}
 
@@ -209,42 +211,48 @@ public:
 		if (x.an > y.an) {
 			return true;
 		}
-		else if (x.luna > y.luna)
+		else if (x.luna > y.luna && x.an==y.an)
 			return true;
-		else if (x.zi > y.zi)
+		else if (x.zi > y.zi && x.luna==y.an && x.an==y.an)
 			return true;
 		return false;
 	}
 
 	Eveniment operator++() { //pre incrementare
-		nrBileteDisponibile++;
+		zi++;
 		return *this;
 	}
 
-	Eveniment operator++(int i) { //post incrementare
-		Eveniment& x = *this;
-		x.nrBileteDisponibile++;
+	Eveniment operator++(int) { //post incrementare
+		Eveniment x = *this;
+		zi++;
 		return x;
 	}
 
 	Eveniment operator--() { //pre decrementare
-		nrBileteDisponibile--;
+		zi--;
 		return *this;
 	}
 
-	Eveniment operator--(int i) { //pre decrementare
-		Eveniment& x = *this;
-		x.nrBileteDisponibile--;
+	Eveniment operator--(int) { //post decrementare
+		Eveniment x = *this;
+		zi--;
 		return x;
 	}
 
 
 	//operator =
-	//Eveniment operator=(const Eveniment i) {
-	//	Eveniment& x = *this;
-	//	x.denumireEveniment = new char[strlen(i.denumireEveniment) + 1];
-	//	strcpy_s(x.denumireEveniment, strlen(i.denumireEveniment) + 1, i.denumireEveniment);
-	//	x.data = i.data;
-	//	x.ora = i.ora;
-	//}
+	Eveniment operator=(const Eveniment i) {
+		Eveniment& x = *this;
+		x.denumireEveniment = new char[strlen(i.denumireEveniment) + 1];
+		strcpy_s(x.denumireEveniment, strlen(i.denumireEveniment) + 1, i.denumireEveniment);
+		x.zi = i.zi;
+		x.an = i.an;
+		x.luna = i.luna;
+		x.an = i.an;
+		x.ora = i.ora;
+		x.minute = i.minute;
+		x.nrCategoriiBilete = i.nrCategoriiBilete;
+		return x;
+	}
 };
