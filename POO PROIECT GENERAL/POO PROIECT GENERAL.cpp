@@ -11,147 +11,126 @@ int Eveniment::nrBileteDisponibile = 200;
 
 int main()
 {
-	//Zona zona1("peluza", 50, 5);
-	//Zona zona2("tribuna1", 120, 4);
-	//Zona zona3("tribuna2", 160, 4);
-	//Zona zone[3]={zona1, zona2, zona3};
-	//Locatie locatie1("Stadion Bucuresti", 3, zone);
-	//cout << locatie1.zone[0].getNrL() << endl;
-	//cout << locatie1.zone[1].getNrL() << endl;
-	//cout << locatie1.zone[2].getNrL() << endl;
+	Eveniment event1; 
+	if (1 != 0) {
+		////cin >> event1;
+		//cout << endl;
+		////cout << event1 << endl;
+		//event1.setDenumire((char*)"");
+		//event1.setDenumire(nullptr);
+		//event1.setDenumire((char*)"concert killa fonic");
+		//event1.setNrBileteDisponibile(2000);
+		//event1.setZi(16);
+		//event1.setLuna(12);
+		//event1.setAn(2022);
+		//event1.setTime(20, 00);
+		//event1.setCategoriiBilete(2);
+		////cout << event1 << endl;
 
-	//Bilet tip1("796999fc-e88c-4cb4-adba-980ac8b764a8", "Peluza", 20);
-	//Bilet tip2("e9259402-385d-4e4d-8b16-d7f98fb1fd63", "Tribuna", 10);
-	//
-	//Bilet* bilete = new Bilet[2]{tip1, tip2};
-	//Eveniment eveniment1((char*)"meci fotbal", "10-DEC-2022", "20:00", 2, bilete);
-	////cout << eveniment1.bilete[0].getTip() << endl;
-	////cout << tip1.getTip();
-	////cout << eveniment1.bilete[0].getPret() << endl;
-	////cout << eveniment1.bilete[1].getPret() << endl;
-	//cout << eveniment1;
-	//cout << endl << tip1;
-	//cout << endl << locatie1;
-	//cout << endl << zona1;
+		//Eveniment event2 = event1;
+		//cout << event2 << endl;
 
-	//Emitere de bilete la film din categoriile Normal sau VIP.
-	//Fiecare zonă are rând și loc.Biletele se vor genera în limita locurilor disponibile.
-	//Atunci când un utilizator prezintă biletul se va verifica id - ul 
-	//unic al acestuia pentru a vedea dacă este valid
+		//Eveniment event3((char*)"Concert Nane x Rava x Ian", 7, 1, 2023, 23, 00, 2);
+		//cout << event3 << endl;
 
-	/*cout << "===========   EVENIMENT #1 ===========" << endl;
-	Bilet bilet1("1", "Normal", 20);
-	Bilet bilet2("2", "VIP", 35);
-	Bilet* bilete = new Bilet[2]{bilet1, bilet2};
-	Eveniment film((char*)"film", "10-Dec-2022", "19:00", 2, bilete);
-	cout << film << endl;
-	cout << bilet1 << endl;
-	cout << bilet2 << endl;
+		//cout << (event2 > event3) << endl;
+		//cout << (event3 > event2);
 
-	int* purchase1 = new int[2]{ 2,3 };
-	AchizitieBilet achizitie1(purchase1);
-	cout << achizitie1.valoareAchizitie(bilete);
+		//cout << event2 << endl;
 
-	cout << endl;
-	cout << endl;*/
-	//Emitere de bilete la teatru din categoriile Categoria 1, Categoria 2 și Lojă.
-	//Fiecare zonă are rând și loc.
-	//Biletele se vor genera în limita locurilor disponibile.
-	//Atunci când un utilizator prezintă biletul se va verifica id - ul
-	//unic al acestuia pentru a vedea dacă este valid
+		////Eveniment event4 = ++event2;
+		//////event4 = event2++;
 
-	/*cout << "===========   EVENIMENT #2 ===========" << endl;
-	Bilet biletTeatru("1t", "Normal", 30);
-	Bilet* bileteTeatru = new Bilet[1]{ biletTeatru };
-	Eveniment teatru((char*)"teatru", "12-Dec-2022", "16:00", 1, bileteTeatru);
-	Zona zona1("Categoria 1", 100, 5);
-	Zona zona2("Categoria 2", 100, 5);
-	Zona zona3("Loja", 200, 8);
-	Zona* zone = new Zona[3]{ zona1, zona2, zona3 };
-	Locatie locatie1("necunoscuta", 3, zone);
-	cout << teatru << endl;
-	cout << biletTeatru << endl;
-	cout << locatie1 << endl;
-	cout << zona1 << endl;
-	cout << zona2 << endl;
-	cout << zona3 << endl;*/
+		////cout << event4;
+		////cout << endl << event2 << endl;
 
-	Eveniment ev((char*)"meci", 10, 2, 2023, "20:00", 1);
-	ev.zileRamase(14,12,2022);
-	ev.epuizareBilete(2);
+		//Eveniment event4;
+		//event4 = --event2;
+		//cout << event4;
+		//cout << endl << event2 << endl;
 
-	Bilet b("123", "Normal", 23);
-	b.checkValoare(10);
-	b.aplicareReducereGenerala(23);
+		//event4.epuizareBilete(2003);
+		//event1.evenimentRatat(16, 12, 2022);
+	}
 
-	Locatie l("Stadion Craiova", 1, 500);
-	cout << endl << l.locuriNeutilizate();
-	l.acordareRating(5);
-	l.acordareRating(1.5);
-	cout << endl << l.getRating();
-	
-	cout << endl;
-	int* p = new int[200];
-	int* locuri = new int[3]{ 5,2,3 };
-	for (int i = 0; i < 200; i++) p[i] = 1;
-	Zona z("zona 1", 200, 10, p);
-	cout << endl << z.locuriPerRand();
-	z.eliberareLocuri(locuri, 3);
+	Bilet bilet1, bilet2("121dawd", "Regular", 2);
+	if (2 != 0) {
+		//Bilet bilet1, bilet2("121dawd", "Regular", 2);
+		////cin >> bilet1;
+		////cin >> bilet2;
+		////int x;
+		////cin >> x;
+		//Bilet bilet3;// = bilet2;
+		//cout << bilet2 << endl;
+		//cout << bilet3 << endl;
 
-	//MENIU
-	bool switch_on = true;
+		//bilet3 = bilet2;
+		//cout << bilet2 << endl;
+		//cout << bilet3 << endl;
 
-	//do {
-	//	switch (switch_on)
-	//	{
-	//	case 1: {
-	//		cout << "-- DETALII EVENIMENT -- " << endl;
-	//		Eveniment ev1; //pentru switch am nevoie de vector de obiecte, nu e bine daca il las asa
-	//		cin >> ev1;
-	//		cout << endl;
+		//bilet3 = bilet3 - 2;
+		//cout << bilet3 << endl;
+	}
 
-	//		cout << "-- DETALII BILETE -- " << endl;
-	//		Bilet* b1 = new Bilet[ev1.getNrCategorii()];
-	//		for (int i = 0; i < ev1.getNrCategorii(); i++) {
-	//			cout << endl << "bilet " << i + 1 << ": " << endl;
-	//			cin >> b1[i];
-	//		}
-	//		cout << endl;
+	Locatie locatie1;
+	if (3 != 0) {
+		////cin >> locatie1;	
+		////cin >> locatie2;
 
-	//		cout << "-- DETALII LOCATIE -- " << endl;
-	//		Locatie loc1;
-	//		cin >> loc1;
-	//		cout << endl;
+		//locatie1.setDenumireLocatie("Arenele Romane");
+		//locatie1.setNrLocuriDisponibile(2000);
+		//locatie1.setNrZone(3);
+		//locatie1.setRating(3.5);
 
-	//		cout << "--DETALII ZONE -- " << endl;
-	//		Zona* z1 = new Zona[loc1.getNrZone()];
-	//		for (int i = 0; i < loc1.getNrZone(); i++) {
-	//			cout << endl << "zona " << i + 1 << ": " << endl;
-	//			cin >> z1[i];
-	//		}
+		//Locatie locatie2 = locatie1;
+		//locatie2.setNrZone(10);
 
+		//cout << locatie2.getDenumire() << endl;
+		//cout << locatie2.getNrLocuriDisponobile() << endl;
+		//cout << locatie2.getNrZone() << endl;
+		//cout << locatie2.getRating() << endl;
 
-	//		cout << endl << endl << endl << "Iata informatiile furnizate de dvs: " << endl << endl;
+		//cout << endl;
 
-	//		cout << ev1 << endl;
-	//		for (int i = 0; i < ev1.getNrCategorii(); i++) {
-	//			cout << b1[i] << endl;
-	//		}
-	//		cout << loc1 << endl;
-	//		for (int i = 0; i < loc1.getNrZone(); i++) {
-	//			cout << z1[i];
-	//		}
-	//	}
-	//	case 0:
-	//		cout << "Multumim pentru timpul acordat, o zi frumoasa!";
-	//	default:
-	//		cout << "nu a fost recunoscuta comanda!" << endl;
-	//		cout << "doriti sa reincercati? true(1)/false(0):   ";
-	//		cin >> switch_on;
-	//		break;
-	//	}
-	//	cout << endl << endl << endl << "Doriti sa inregistrati un nou eveniment? true(1)/false(0):   ";
-	//	cin >> switch_on;
-	//} while (switch_on == true);
+		////cout << endl;
+		////cout << locatie1 << endl;
+		////cout << locatie2;
+
+		////cout << (locatie1 == locatie2);
+		////cout << int(locatie1);
+
+		//Locatie locatie3("", 0, -1, 6);
+		//cout << endl << locatie3;
+	}
+
+	Zona zona5;
+	if (4 != 0) {
+		//int* p = new int[5]{ 0,0,1,0,1 };
+		//Zona zona1("tribuna 1", 5, 1, p);
+		//cout << zona1;
+		//Zona zona2 = zona1;
+		////cout << endl << zona2;
+		//Zona zona3;
+		//zona3 = zona1;
+		//cout << endl << zona3;
+
+		//zona3 = zona3 + 10;
+
+		//cout << endl << zona3;
+		//cout << endl << zona3[4] << endl;
+		////zona 5:
+		//cin >> zona5;
+		//cout << endl << zona5;
+	}
+
+	//cin >> event1;
+	//cout << event1;
+
+	//cin >> bilet1;
+	//cin >> bilet2;
+	//cout << bilet1 << endl<<bilet2;
+
+	cin>>locatie1;
+	cout << endl << locatie1;
 	return 0;
 }

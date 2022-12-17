@@ -27,22 +27,38 @@ public:
 		pret = Pret;
 	}
 
-	void setTip(string tip) { this->tipBilet = tip; }
-	void setPret(float x) { this->pret = x; }
+	void setTip(string tip) { 
+		if (tip.length() < 1)
+			cout << "Tipul biletului trebuie sa aiba cel putin un caracter!";
+		this->tipBilet = tip; 
+	}
+	void setPret(float x) { 
+		if (x < 0)
+			cout << "Pretul nu poate fi negativ!";
+		this->pret = x; 
+	}
 
 	string getId() { return IdBilet; }
 	string getTip() { return tipBilet; }
 	float getPret() { return pret; }
 
+	//validated
 	friend istream& operator>>(istream &in, Bilet &x){
 		cout << "Tip bilet:  ";
-		in.get();
 		getline(in, x.tipBilet);
+		
 		cout << "Pret: ";
 		in >> x.pret;
+		while (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(100, '\n');
+			cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
+			in >> x.pret;
+		}
+		in.get();
 		return in;
 	}
-
 	friend ostream& operator<<(ostream& out, Bilet x) {
 		out << "Tip bilet:  " << x.tipBilet << endl;
 		out << "Pret: " << x.pret << endl;
@@ -52,6 +68,18 @@ public:
 	Bilet(const Bilet& x) {
 		tipBilet = x.tipBilet;
 		pret = x.pret;
+	}
+
+	Bilet operator+(int i) {
+		Bilet& x = *this;
+		x.pret += i;
+		return x;
+	}
+
+	Bilet operator-(int i) {
+		Bilet& x = *this;
+		x.pret -= i;
+		return x;
 	}
 
 	Bilet operator=(const Bilet& i) {
