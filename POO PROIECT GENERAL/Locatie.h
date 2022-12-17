@@ -36,22 +36,10 @@ public:
 		ratingLocatie = 5;
 	}
 	Locatie(string denumire, int nrZone, int nrLocuriDisponibile, float rating) {
-		if (denumire.length() >= 1)
-			this->denumireLocatie = denumire;
-		else cout << "Denumirea trebuie sa contina cel putin un caracter!" << endl;
-		
-		if (nrZone > 0)
-			this->nrZone = nrZone;
-		else cout << "Trebuie sa existe cel putin o zona!" << endl;
-		
-		if (nrLocuriDisponibile >= 0)
-			this->nrLocuriDisponibile = nrLocuriDisponibile;
-		else cout << "Numarul de locuri nu poate fi negativ!" << endl;
-
-		if (rating >= 1 && rating <= 5)
-			this->ratingLocatie = rating;
-		else
-			cout << endl << "Introduceti o valoare intre 1.0 si 5.0 stele!" << endl;
+		this->denumireLocatie = denumire;
+		this->nrZone = nrZone;
+		this->nrLocuriDisponibile = nrLocuriDisponibile;
+		this->ratingLocatie = rating;
 	}
 
 	//setteri validati
