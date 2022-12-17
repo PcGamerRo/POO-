@@ -64,10 +64,8 @@ public:
 		nrCategoriiBilete = 0;
 	}
 	Eveniment(char* denumire, int zi, int luna, int an, int ora, int minute, int nrCategorii/*, const Bilet* bilete*/) {
-		if (denumire != nullptr) {
-			denumireEveniment = new char[strlen(denumire) + 1];
-			strcpy_s(denumireEveniment, strlen(denumire) + 1, denumire);
-		}
+		denumireEveniment = new char[strlen(denumire) + 1];
+		strcpy_s(denumireEveniment, strlen(denumire) + 1, denumire);
 
 		this->zi = zi;
 		this->luna = luna;
@@ -272,6 +270,7 @@ public:
 		nrCategoriiBilete = x.nrCategoriiBilete;
 	}
 
+	//supraincarcare operator >
 	bool operator>(Eveniment& y) { //verif ce eveniment are loc mai tarziu
 		Eveniment& x = *this;
 		if (x.an > y.an) {
@@ -284,29 +283,31 @@ public:
 		return false;
 	}
 
+	//supraincarcare operator++
 	Eveniment operator++() { //pre incrementare
 		zi++;
 		return *this;
 	}
-
+	//supraincarcare operator++
 	Eveniment operator++(int) { //post incrementare
 		Eveniment x = *this;
 		zi++;
 		return x;
 	}
 
+	//supraincarcare operator--
 	Eveniment operator--() { //pre decrementare
 		zi--;
 		return *this;
 	}
-
+	//supraincarcare operator--
 	Eveniment operator--(int) { //post decrementare
 		Eveniment x = *this;
 		zi--;
 		return x;
 	}
 
-	//operator =
+	//supraincarcare operator =
 	Eveniment operator=(const Eveniment i) {
 		Eveniment& x = *this;
 		x.denumireEveniment = new char[strlen(i.denumireEveniment) + 1];

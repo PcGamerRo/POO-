@@ -70,12 +70,14 @@ public:
 		pret = x.pret;
 	}
 
+	//supraincarcare operator+
 	Bilet operator+(int i) {
 		Bilet& x = *this;
 		x.pret += i;
 		return x;
 	}
 
+	//supraincarcare operator-
 	Bilet operator-(int i) {
 		Bilet& x = *this;
 		x.pret -= i;

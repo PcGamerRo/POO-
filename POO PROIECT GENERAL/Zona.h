@@ -29,22 +29,13 @@ public:
 		locOcupat = new int[1]{ 0 };
 	}
 	Zona(string denumire, int nrL, int nrR, int* nrLoc) :Zona() {
-		if (denumire.length() >= 1)
-			this->denumire = denumire;
-		else cout << "Denumirea trebuie sa contina cel putin un caracter!";
-		if (nrL >= 1)
-			this->nrLocuri = nrL;
-		else cout << "Trebuie sa existe cel putin un loc!";
-		if (nrR >= 1)
-			this->nrRanduri = nrR;
-		else cout << "Trebuie sa existe cel putin un rand!";
-		if (nrLoc != nullptr) {
-			locOcupat = new int[this->nrLocuri];
-			for (int i = 0; i < this->nrLocuri; i++) {
-				locOcupat[i] = nrLoc[i];
-			}
+		this->denumire = denumire;
+		this->nrLocuri = nrL;
+		this->nrRanduri = nrR;
+		locOcupat = new int[this->nrLocuri];
+		for (int i = 0; i < this->nrLocuri; i++) {
+			locOcupat[i] = nrLoc[i];
 		}
-		else cout << "Sirul de numere nu poate fi unul nul!";
 	}
 	
 	~Zona() { delete[] locOcupat; }
