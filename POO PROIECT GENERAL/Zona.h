@@ -28,62 +28,108 @@ public:
 		nrRanduri = 1;
 		locOcupat = new int[1]{ 0 };
 	}
-	Zona(string denumire, int nrL, int nrR, int* nrLoc) {
-		this->denumire = denumire;
-		nrLocuri = nrL;
-		nrRanduri = nrR;
-		if (locOcupat != nullptr)
-			delete[] locOcupat;
-		locOcupat = new int[nrLocuri];
-		for (int i = 0; i < nrLocuri; i++) {
-			locOcupat[i] = nrLoc[i];
-		}
-		//numarLocuriPeRand = getNumarLocuri_peRand();
-	}
-	
-	~Zona() { delete[] locOcupat;}
-
-	void setDenumire(string denumire) { this->denumire = denumire; }
-	void setNrLocuri(int x) { this->nrLocuri = x; }
-	void setNrRanduri(int x) { this->nrRanduri = x; }
-	//void setNrLocuri_peRand(int x) { this->numarLocuriPeRand = x; }
-	void setLocOcupat(int* x) {
-		if (locOcupat != nullptr)
-			delete[] locOcupat;
-		if (x != nullptr && nrRanduri > 0) {
-			locOcupat = new int[nrRanduri];
-			for (int i = 0; i < nrRanduri; i++) {
-				locOcupat[i] = x[i];
+	Zona(string denumire, int nrL, int nrR, int* nrLoc) :Zona() {
+		if (denumire.length() >= 1)
+			this->denumire = denumire;
+		else cout << "Denumirea trebuie sa contina cel putin un caracter!";
+		if (nrL >= 1)
+			this->nrLocuri = nrL;
+		else cout << "Trebuie sa existe cel putin un loc!";
+		if (nrR >= 1)
+			this->nrRanduri = nrR;
+		else cout << "Trebuie sa existe cel putin un rand!";
+		if (nrLoc != nullptr) {
+			locOcupat = new int[this->nrLocuri];
+			for (int i = 0; i < this->nrLocuri; i++) {
+				locOcupat[i] = nrLoc[i];
 			}
 		}
+		else cout << "Sirul de numere nu poate fi unul nul!";
+	}
+	
+	~Zona() { delete[] locOcupat; }
+
+	void setDenumire(string denumire) { 
+		if (denumire.length() >= 1)
+			this->denumire = denumire;
+		else cout << "Denumirea trebuie sa contina cel putin un caracter!";
+	}
+	void setNrLocuri(int nrL) {
+		if (nrL >= 1)
+			this->nrLocuri = nrL;
+		else cout << "Trebuie sa existe cel putin un loc!";
+	}
+	void setNrRanduri(int nrR) {
+		if (nrR >= 1)
+			this->nrRanduri = nrR;
+		else cout << "Trebuie sa existe cel putin un rand!";
+	}
+	void setLocOcupat(int* nrLoc) {
+		if (locOcupat != nullptr)
+			delete[] locOcupat;
+		if (nrLoc != nullptr) {
+			locOcupat = new int[this->nrLocuri];
+			for (int i = 0; i < this->nrLocuri; i++) {
+				locOcupat[i] = nrLoc[i];
+			}
+		}
+		else cout << "Sirul de numere nu poate fi unul nul!";
 	}
 
 	string getDenumire() { return denumire; }
 	int getNrL() { return nrLocuri; }
 	int getNrR() { return nrRanduri; }
-	//int getNumarLocuri_peRand() {
-	//	numarLocuriPeRand = nrLocuri / nrRanduri;
-	//	return numarLocuriPeRand;
-	//}
 	int* getLocOcupat() { return locOcupat; }
 
 	friend istream& operator>>(istream& in, Zona& x) {
+		string copieString;
 		cout << "Denumire zona: ";
-		in.get();
-		getline(in, x.denumire);
+		getline(in, copieString);
+		if (copieString.length() >= 1) {
+			x.denumire = copieString;
+		}
+		else cout << "Denumirea trebuie sa contina cel putin un caracter!";
+
+		int copieInt;
 		cout << "Numar locuri: ";
-		in >> x.nrLocuri;
+		in >> copieInt;
+		if (copieInt >= 1)
+			x.nrLocuri = copieInt;
+		else cout << "Trebuie sa existe cel putin un loc!";
+
 		cout << "Numar randuri: ";
-		in >> x.nrRanduri;
-		//x.numarLocuriPeRand = x.getNumarLocuri_peRand();
-		cout << "Locuri ocupate: 1-ocupat 0-liber: ";
-	/*	if (x.locOcupat != nullptr)
-			delete[] x.locOcupat;
-		x.locOcupat = new int[x.nrLocuri];
+		in >> copieInt;
+		if (copieInt >= 1)
+			x.nrRanduri = copieInt;
+		else cout << "Trebuie sa existe cel putin un rand!";
+
+		int* copiePointerInt=new int[x.nrLocuri];
+		bool pass = true;
+		cout << "Locuri ocupate: 1-ocupat 0-liber: " << endl;
 		for (int i = 0; i < x.nrLocuri; i++) {
 			cout << "Locul " << i << ": ";
-			in >> x.locOcupat[i];
-		}*/
+			in >> copiePointerInt[i];
+			if (copiePointerInt[i] != 0 && copiePointerInt[i] != 1) {
+				cout << "Sirul poate primi doar valorile 0 si 1!"; 
+				pass = false;
+				break;
+			}
+		}
+		if (x.nrRanduri < 1 || copiePointerInt == nullptr) {
+			cout << "Sirul trebuie sa fie diferit de nullptr!";
+		}
+		else if (pass==true) {
+			x.locOcupat = new int[x.nrLocuri];
+			for (int i = 0; i < x.nrLocuri; i++) {
+				x.locOcupat[i]=copiePointerInt[i];
+			}
+		}
+		else {
+			x.locOcupat = new int[x.nrLocuri]{ 0 };
+		}
+		delete[] copiePointerInt;
+
+		in.get();
 		return in;
 	}
 
@@ -94,7 +140,7 @@ public:
 		//out << "Numar locuri pe rand: " << x.getNumarLocuri_peRand() << endl;
 		out << "Locuri ocupate: 1-ocupat 0-liber" << endl;
 		for (int i = 0; i < x.nrLocuri; i++) {
-			out << "locul i: " << x.locOcupat << endl;
+			out << "locul " << i << ": " << x.locOcupat[i] << endl;
 		}
 		return out;
 	}
@@ -103,8 +149,12 @@ public:
 		denumire = x.denumire;
 		nrLocuri = x.nrLocuri;
 		nrRanduri = x.nrRanduri;
+		locOcupat = new int[x.nrLocuri];
+		for (int i = 0; i < x.nrLocuri; i++)
+			locOcupat[i] = x.locOcupat[i];
 	}
 
+	//supraincarcare operator []
 	int operator[](int index)
 	{
 		if (index >= 0 && index < nrLocuri)
@@ -114,18 +164,34 @@ public:
 		else return -1;
 	}
 
-	Zona operator+(int i) { // incrementare cu valoarea i a numarului de locuri ale zonei
+	//supraincarcare operator +
+	Zona operator+(int k) { 
+		// incrementare cu valoarea k a numarului de locuri ale zonei
+		//acele locuri nou adaugate vor primi valoarea 0 - locuri libere;
 		Zona& x = *this;
-		x.nrLocuri += i;
+		int* copie = new int[x.nrLocuri];
+		for (int i = 0; i < x.nrLocuri; i++)
+			copie[i] = x.locOcupat[i];
+		delete[] x.locOcupat;
+		x.locOcupat = new int[x.nrLocuri + k];
+		for (int i = 0; i < x.nrLocuri; i++) {
+			x.locOcupat[i] = copie[i];
+		}
+		for (int i = x.nrLocuri; i < x.nrLocuri+k; i++)
+			x.locOcupat[i] = 0;
+		x.nrLocuri += k;
+		delete[] copie;
 		return x;
 	}
 
+	//supraincarcare operator =
 	Zona operator=(const Zona& i) {
 		Zona& x = *this;
 		x.denumire = i.denumire;
 		x.numarLocuriPeRand = i.numarLocuriPeRand;
 		x.nrLocuri = i.nrLocuri;
 		x.nrRanduri = i.nrRanduri;
+		x.locOcupat = new int[i.nrLocuri];
 		for (int j = 0; j < x.nrLocuri; j++) {
 			x.locOcupat[j] = i.locOcupat[j];
 		}

@@ -11,7 +11,7 @@ int Eveniment::nrBileteDisponibile = 200;
 
 int main()
 {
-	Eveniment event1; // it meets the requirements!
+	Eveniment event1; 
 	if (1 != 0) {
 		////cin >> event1;
 		//cout << endl;
@@ -72,7 +72,65 @@ int main()
 		//cout << bilet3 << endl;
 	}
 
+	Locatie locatie1;
+	if (3 != 0) {
+		////cin >> locatie1;	
+		////cin >> locatie2;
 
+		//locatie1.setDenumireLocatie("Arenele Romane");
+		//locatie1.setNrLocuriDisponibile(2000);
+		//locatie1.setNrZone(3);
+		//locatie1.setRating(3.5);
 
+		//Locatie locatie2 = locatie1;
+		//locatie2.setNrZone(10);
+
+		//cout << locatie2.getDenumire() << endl;
+		//cout << locatie2.getNrLocuriDisponobile() << endl;
+		//cout << locatie2.getNrZone() << endl;
+		//cout << locatie2.getRating() << endl;
+
+		//cout << endl;
+
+		////cout << endl;
+		////cout << locatie1 << endl;
+		////cout << locatie2;
+
+		////cout << (locatie1 == locatie2);
+		////cout << int(locatie1);
+
+		//Locatie locatie3("", 0, -1, 6);
+		//cout << endl << locatie3;
+	}
+
+	Zona zona5;
+	if (4 != 0) {
+		//int* p = new int[5]{ 0,0,1,0,1 };
+		//Zona zona1("tribuna 1", 5, 1, p);
+		//cout << zona1;
+		//Zona zona2 = zona1;
+		////cout << endl << zona2;
+		//Zona zona3;
+		//zona3 = zona1;
+		//cout << endl << zona3;
+
+		//zona3 = zona3 + 10;
+
+		//cout << endl << zona3;
+		//cout << endl << zona3[4] << endl;
+		////zona 5:
+		//cin >> zona5;
+		//cout << endl << zona5;
+	}
+
+	//cin >> event1;
+	//cout << event1;
+
+	//cin >> bilet1;
+	//cin >> bilet2;
+	//cout << bilet1 << endl<<bilet2;
+
+	cin>>locatie1;
+	cout << endl << locatie1;
 	return 0;
 }

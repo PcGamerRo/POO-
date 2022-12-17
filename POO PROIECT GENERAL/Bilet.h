@@ -42,15 +42,23 @@ public:
 	string getTip() { return tipBilet; }
 	float getPret() { return pret; }
 
+	//validated
 	friend istream& operator>>(istream &in, Bilet &x){
 		cout << "Tip bilet:  ";
 		getline(in, x.tipBilet);
+		
 		cout << "Pret: ";
 		in >> x.pret;
+		while (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(100, '\n');
+			cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
+			in >> x.pret;
+		}
 		in.get();
 		return in;
 	}
-
 	friend ostream& operator<<(ostream& out, Bilet x) {
 		out << "Tip bilet:  " << x.tipBilet << endl;
 		out << "Pret: " << x.pret << endl;
