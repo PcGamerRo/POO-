@@ -14,8 +14,14 @@ int main()
 	//		VERIFICARE FUNCTIONALITATE CLASE
 	//Clasa Eveniment.h
 	
-	Eveniment event1;
-	Eveniment event2;
-
+	Eveniment event1((char*)"eveniment de calitate", 17, 12, 2022, 22, 00, 1);
+	cout << event1.getDenumire() << endl;
+	cout << event1.getZi() << endl;
+	cout << event1.getLuna() << endl;
+	cout << event1.getAn() << endl;
+	cout << event1.getOra() << endl;
+	cout << event1.getMinute() << endl;
+	cout << event1.getNrCategorii() << endl;
+	cout << event1.getBileteDisp() << endl;
 	return 0;
 }

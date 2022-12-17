@@ -10,7 +10,6 @@ class Eveniment
 	char* denumireEveniment;
 	static int nrBileteDisponibile;
 	int nrCategoriiBilete;
-	//Bilet* bilete;
 	//date:
 	int zi;
 	int luna;
@@ -19,135 +18,32 @@ class Eveniment
 	int ora;
 	int minute;
 public:
-	//metoda #1
-	void evenimentRatat(int x, int y, int z) { 
-		//x-zi y-luna z-an -> data curenta
-		bool pass = true;
-		if (x > 31 || x < 1) {
-			cout << endl << "ziua trebuie sa aiba o valoare cuprinsa intre 1 si 31!" << endl;
-			pass = false;
-		}
-		if (y > 12 || y < 1) {
-			cout << "luna trebuie sa aiba o valoare cuprinsa intre 1 si 12!" << endl;
-			pass = false;
-		}
-		else if (z < 0) {
-			cout << "Anul nu poate fi negativ!" << endl;
-			pass = false;
-		}
-		else if (pass == true) {
-			if (z > an || (y > luna && z == an) || (x > zi && y == luna && z == an))
-				cout << "Evenimentul a fost ratat!" << endl;
-			else if (z == an && y == luna && x == zi)
-				cout << "Evenimentul este astazi!" << endl;
-			else cout << "Evenimentul nu a inceput inca!" << endl;
-		}
-	}
-	//metoda #2 ( statica )
-	static void epuizareBilete(int x) {
-		if (nrBileteDisponibile >= x)
-			nrBileteDisponibile -= x;
-		else cout << endl << "Nu sunt suficiente bilete! valoarea maxima este: " << nrBileteDisponibile << endl << endl;
-	}
+	Eveniment();
+	Eveniment(char* denumire, int zi, int luna, int an, int ora, int minute, int nrCategorii);
+	~Eveniment();
 
-	Eveniment() {
-		denumireEveniment = new char[11];
-		strcpy_s(denumireEveniment, 11, "Necunoscut");
+	void evenimentRatat(int x, int y, int z);
+	static void epuizareBilete(int x);
 
-		zi = 1;
-		luna = 1;
-		an = 2023;
-		
-		ora = 00;
-		minute = 00;
-
-		nrCategoriiBilete = 0;
-	}
-	Eveniment(char* denumire, int zi, int luna, int an, int ora, int minute, int nrCategorii/*, const Bilet* bilete*/) {
-		denumireEveniment = new char[strlen(denumire) + 1];
-		strcpy_s(denumireEveniment, strlen(denumire) + 1, denumire);
-
-		this->zi = zi;
-		this->luna = luna;
-		this->an = an;
-
-		this->ora = ora;
-		this->minute = minute;
-
-		this->nrCategoriiBilete = nrCategorii;
-
-		//if (nrCategoriiBilete > 0 && bilete != NULL) {
-		//	delete[] this->bilete;
-		//	this->bilete = new Bilet[nrCategoriiBilete];
-		//}
-		//for (int i = 0; i < nrCategoriiBilete; i++) {
-		//	this->bilete[i] = bilete[i];
-		//}
-	}
-	~Eveniment() {
-		delete denumireEveniment;
-	}
-
-	//setteri (validati)
-	void setDenumire(char* denumire) {
-		if (denumire != nullptr) {
-			if (strlen(denumire) == 0)
-				cout << "Denumirea trebuie sa aibe cel putin un caracter!";
-			else {
-				if (denumireEveniment != nullptr)
-					delete[] denumireEveniment;
-
-				denumireEveniment = new char[strlen(denumire) + 1];
-				strcpy_s(denumireEveniment, strlen(denumire) + 1, denumire);
-			}
-		}
-		else cout << "denumirea trebuie sa fie diferita de nullptr!" << endl;
-	}
-	static void setNrBileteDisponibile(int x) {
-		if (x < 0)
-			cout << "Numarul de bilete disponibile nu poate fi negativ!";
-		else
-			nrBileteDisponibile = x;
-	}
-	void setZi(int x) { 
-		if (x > 31 || x < 1) {
-			cout << "ziua trebuie sa aiba o valoare cuprinsa intre 1 si 31!" << endl;
-		}
-		else
-			this->zi = x;
-	}
-	void setLuna(int y) {
-		if (y > 12 || y < 1)
-			cout << "luna trebuie sa aiba o valoare cuprinsa intre 1 si 12!" << endl;
-		else
-			this->luna = y;
-	}
-	void setAn(int z) { 
-		if (z < 0)
-			cout << "Anul nu poate fi negativ!" << endl;
-		else
-			this->an = z;
-	}
-	void setTime(int ora, int minute) {
-		if (ora < 0 || ora > 23 || minute < 0 || minute > 59) {
-			cout << "Timpul trebuie cuprins intre 00:00 si 23:59";
-		}
-		else {
-		this->ora = ora;
-		this->minute = minute;
-		}
-	}
-	void setCategoriiBilete(int nr) { this->nrCategoriiBilete = nr; }
-	//getteri
-	char* getDenumire() { return denumireEveniment; }
-	static int getNrBilete() { return nrBileteDisponibile; }
-	int getZi() { return zi; }
-	int getLuna() { return luna; }
-	int getAn() { return an; }
-	int getOra() { return ora; }
-	int getMinute() { return minute; }
-	int getNrCategorii() { return nrCategoriiBilete; }
-	static int getBileteDisp() { return Eveniment::nrBileteDisponibile; }
+	//setters
+	void setDenumire(char* denumire);
+	static void setNrBileteDisponibile(int x);
+	void setZi(int x);
+	void setLuna(int y);
+	void setAn(int z);
+	void setTime(int ora, int minute);
+	void setCategoriiBilete(int nr);
+	
+	//getters
+	char* getDenumire();
+	static int getNrBilete();
+	int getZi();
+	int getLuna();
+	int getAn();
+	int getOra();
+	int getMinute();
+	int getNrCategorii();
+	static int getBileteDisp();
 
 	//validated
 	friend istream& operator>>(istream& in, Eveniment &x) {
