@@ -151,30 +151,94 @@ public:
 	int getNrCategorii() { return nrCategoriiBilete; }
 	static int getBileteDisp() { return Eveniment::nrBileteDisponibile; }
 
+	//validat
 	friend istream& operator>>(istream& in, Eveniment &x) {
 		cout << "Denumire eveniment: ";
 		char buff[500];
 		in.getline(buff, 50);
 		x.denumireEveniment = new char[strlen(buff) + 1];
 		strcpy_s(x.denumireEveniment, strlen(buff) + 1, buff);
+		
 		cout << "Numar bilete disponibile: ";
 		in >> x.nrBileteDisponibile;
-		
+		while (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(100, '\n');
+			cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
+			in >> x.nrBileteDisponibile;
+		}
+
 		cout << "Data: (numere intregi)" << endl;
 		cout << "-	Zi: ";
 		in >> x.zi;
+		while (x.zi > 31 || x.zi < 1) {
+			if (cin.fail())
+				cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
+			else 
+				cout << "ziua trebuie sa fie cuprinsa intre 1 si 31! incercati din nou: ";
+			cin.clear();
+			cin.ignore(100, '\n');
+			in >> x.zi;
+		}
+		
 		cout << "-	Luna: ";
 		in >> x.luna;
+		while (x.luna > 12 || x.luna < 1) {
+			if (cin.fail())
+				cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
+			else 
+				cout << "luna trebuie sa fie cuprinsa intre 1 si 12! incercati din nou: ";
+			cin.clear();
+			cin.ignore(100, '\n');
+			in >> x.luna;
+		}
+		
 		cout << "-	An: ";
 		in >> x.an;
+		while (x.an < 0 || cin.fail())
+		{
+			if (cin.fail())
+				cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
+			else 
+				cout << "anul nu poate fi negativ! incercati din nou: ";
+			cin.clear();
+			cin.ignore(100, '\n');
+			in >> x.an;
+		}
 
 		cout << "Timpul: "<<endl;
 		cout << "-	Ora: ";
 		in >> x.ora;
+		while (cin.fail() || x.ora > 23 || x.ora<0) {
+			if (cin.fail())
+				cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
+			else cout << "Ora trebuie sa aiba valoarea cuprinsa intre 00 si 23! incercati din nou: ";
+			cin.clear();
+			cin.ignore(100, '\n');
+			in >> x.ora;
+		}
 		cout << "-	Minute: ";
+
 		in >> x.minute;
+		while (cin.fail() || x.minute > 59 || x.minute <0) {
+			if (cin.fail())
+				cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
+			else cout << "Minutele trebuie sa aiba valoarea cuprinsa intre 00 si 59! incercati din nou: ";
+			cin.clear();
+			cin.ignore(100, '\n');
+			in >> x.minute;
+		}
+
 		cout << "Numar categorii de bilete (VIP/NORMAL/etc...): ";
 		in >> x.nrCategoriiBilete;
+		while (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(100, '\n');
+			cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
+			in >> x.nrCategoriiBilete;
+		}
 		return in;
 	}
 
