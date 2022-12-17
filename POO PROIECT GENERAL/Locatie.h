@@ -82,34 +82,50 @@ public:
 	int getNrLocuriDisponobile() { return nrLocuriDisponibile; }
 	float getRating() { return ratingLocatie; }
 
+	//validated
 	friend istream& operator>>(istream& in, Locatie& x) {
 		cout << "Denumire locatie: ";
 
-		string copieString;
-		getline(in, copieString);
-		if (x.denumireLocatie.length() >= 1)
-			x.denumireLocatie = copieString;
-		else cout << "Denumirea trebuie sa contina cel putin un caracter!";
+		getline(in, x.denumireLocatie);
+		while (x.denumireLocatie.length() < 1)
+		{
+			cout << "Denumirea trebuie sa contina cel putin un caracter! incercati din nou!";
+			getline(in, x.denumireLocatie);
+		}
 
-		int copieInt;
 		cout << "Numar zone / categorii: ";
-		in >> copieInt;
-		if (copieInt > 0)
-			x.nrZone = copieInt;
-		else cout << "Trebuie sa existe cel putin o zona!";
+		in >> x.nrZone;
+		while (x.nrZone <= 0 || cin.fail()) {
+			if (cin.fail())
+				cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
+			else
+				cout << "Trebuie sa existe cel putin o zona!";
+			cin.clear();
+			cin.ignore(100, '\n');
+			in >> x.nrZone;
+		}
 
 		cout << "Numarul total de locuri: ";
-		in >> copieInt;
-		if (copieInt >= 0)
-			x.nrLocuriDisponibile = copieInt;
-		else cout << "Numarul de locuri nu poate fi negativ!";
+		in >> x.nrLocuriDisponibile;
+		while (x.nrLocuriDisponibile < 0 || cin.fail()) {
+			if (cin.fail())
+				cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
+			else cout << "Numarul de locuri nu poate fi negativ!";
+			cin.clear();
+			cin.ignore(100, '\n');
+			in >> x.nrLocuriDisponibile;
+		}
 
-		float copieFloat;
 		cout << "Rating locatie: ";
-		in >> copieFloat;
-		if (copieFloat >= 1 && copieFloat <= 5)
-			x.ratingLocatie = copieFloat;
-		else cout << "Numarul de locuri nu poate fi negativ!";
+		in >> x.ratingLocatie;
+		while (x.ratingLocatie < 1 || x.ratingLocatie>5 || cin.fail()) {
+			if (cin.fail())
+				cout << "Valoarea introdusa nu este un numar real! incercati din nou: ";
+			else cout << "Numarul de locuri nu poate fi negativ!";
+			cin.clear();
+			cin.ignore(100, '\n');
+			in >> x.ratingLocatie;
+		}
 
 		in.get();
 		return in;

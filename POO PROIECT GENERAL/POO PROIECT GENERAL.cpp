@@ -130,5 +130,7 @@ int main()
 	//cin >> bilet2;
 	//cout << bilet1 << endl<<bilet2;
 
+	cin>>locatie1;
+	cout << endl << locatie1;
 	return 0;
 }

@@ -151,7 +151,7 @@ public:
 	int getNrCategorii() { return nrCategoriiBilete; }
 	static int getBileteDisp() { return Eveniment::nrBileteDisponibile; }
 
-	//validat
+	//validated
 	friend istream& operator>>(istream& in, Eveniment &x) {
 		cout << "Denumire eveniment: ";
 		char buff[500];
@@ -241,7 +241,6 @@ public:
 		}
 		return in;
 	}
-
 	friend ostream& operator<<(ostream& out, Eveniment x) {
 		out << "Denumire eveniment: " << x.denumireEveniment << endl;
 		out << "Numar bilete disponibile: " << x.nrBileteDisponibile << endl;

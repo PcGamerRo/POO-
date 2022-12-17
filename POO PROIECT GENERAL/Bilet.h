@@ -42,6 +42,7 @@ public:
 	string getTip() { return tipBilet; }
 	float getPret() { return pret; }
 
+	//validated
 	friend istream& operator>>(istream &in, Bilet &x){
 		cout << "Tip bilet:  ";
 		getline(in, x.tipBilet);
@@ -58,7 +59,6 @@ public:
 		in.get();
 		return in;
 	}
-
 	friend ostream& operator<<(ostream& out, Bilet x) {
 		out << "Tip bilet:  " << x.tipBilet << endl;
 		out << "Pret: " << x.pret << endl;
