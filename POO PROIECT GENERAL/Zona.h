@@ -16,7 +16,7 @@ public:
 		return nrLocuri / nrRanduri;
 	}
 	//metoda #2
-	void eliberareLocuri(int *locuri, int n) {
+	void eliberareLocuri(int* locuri, int n) {
 		for (int i = 0; i < n; i++) {
 			locOcupat[locuri[i]] = 0;
 		}
@@ -37,10 +37,10 @@ public:
 			locOcupat[i] = nrLoc[i];
 		}
 	}
-	
+
 	~Zona() { delete[] locOcupat; }
 
-	void setDenumire(string denumire) { 
+	void setDenumire(string denumire) {
 		if (denumire.length() >= 1)
 			this->denumire = denumire;
 		else cout << "Denumirea trebuie sa contina cel putin un caracter!";
@@ -73,52 +73,51 @@ public:
 	int* getLocOcupat() { return locOcupat; }
 
 	friend istream& operator>>(istream& in, Zona& x) {
-		string copieString;
-		cout << "Denumire zona: ";
-		getline(in, copieString);
-		if (copieString.length() >= 1) {
-			x.denumire = copieString;
+		cout << "Denumire:";
+		getline(in, x.denumire);
+		while (x.denumire.length() < 1) {
+			cout << "Denumirea trebuie sa contina cel putin un caracter! incercati din nou!";
+			getline(in, x.denumire);
 		}
-		else cout << "Denumirea trebuie sa contina cel putin un caracter!";
 
-		int copieInt;
 		cout << "Numar locuri: ";
-		in >> copieInt;
-		if (copieInt >= 1)
-			x.nrLocuri = copieInt;
-		else cout << "Trebuie sa existe cel putin un loc!";
+		in >> x.nrLocuri;
+		while (cin.fail() || x.nrLocuri < 1) {
+			if (cin.fail())
+				cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
+			else
+				cout << "Trebuie sa existe cel putin un loc!";
+			cin.clear();
+			cin.ignore(100, '\n');
+			in >> x.nrLocuri;
+		}
 
 		cout << "Numar randuri: ";
-		in >> copieInt;
-		if (copieInt >= 1)
-			x.nrRanduri = copieInt;
-		else cout << "Trebuie sa existe cel putin un rand!";
+		in >> x.nrRanduri;
+		while (cin.fail() || x.nrRanduri < 1) {
+			if (cin.fail())
+				cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
+			else
+				cout << "Trebuie sa existe cel putin un rand!";
+			cin.clear();
+			cin.ignore(100, '\n');
+			in >> x.nrRanduri;
+		}
 
-		int* copiePointerInt=new int[x.nrLocuri];
-		bool pass = true;
 		cout << "Locuri ocupate: 1-ocupat 0-liber: " << endl;
+		x.locOcupat = new int[x.nrLocuri];
 		for (int i = 0; i < x.nrLocuri; i++) {
 			cout << "Locul " << i << ": ";
-			in >> copiePointerInt[i];
-			if (copiePointerInt[i] != 0 && copiePointerInt[i] != 1) {
-				cout << "Sirul poate primi doar valorile 0 si 1!"; 
-				pass = false;
-				break;
+			in >> x.locOcupat[i];
+			while (cin.fail() || (x.locOcupat[i] != 0 && x.locOcupat[i] != 1)) {
+				if (cin.fail())
+					cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
+				else cout << "Valorile introduse trebuie sa fie in multimea {0, 1}! incercati din nou: ";
+				cin.clear();
+				cin.ignore(100, '\n');
+				in >> x.locOcupat[i];
 			}
 		}
-		if (x.nrRanduri < 1 || copiePointerInt == nullptr) {
-			cout << "Sirul trebuie sa fie diferit de nullptr!";
-		}
-		else if (pass==true) {
-			x.locOcupat = new int[x.nrLocuri];
-			for (int i = 0; i < x.nrLocuri; i++) {
-				x.locOcupat[i]=copiePointerInt[i];
-			}
-		}
-		else {
-			x.locOcupat = new int[x.nrLocuri]{ 0 };
-		}
-		delete[] copiePointerInt;
 
 		in.get();
 		return in;
