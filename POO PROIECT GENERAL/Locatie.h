@@ -129,7 +129,7 @@ public:
 		ratingLocatie = x.ratingLocatie;
 	}
 
-	//supraincarcare ==
+	//supraincarcare operator ==
 	bool operator==(const Locatie y) {
 		Locatie& x = *this;
 		if (x.nrLocuriDisponibile == y.nrLocuriDisponibile)

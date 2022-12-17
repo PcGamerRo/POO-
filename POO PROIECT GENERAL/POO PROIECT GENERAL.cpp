@@ -103,7 +103,25 @@ int main()
 		//cout << endl << locatie3;
 	}
 
+	Zona zona5;
+	if (4 != 0) {
+		//int* p = new int[5]{ 0,0,1,0,1 };
+		//Zona zona1("tribuna 1", 5, 1, p);
+		//cout << zona1;
+		//Zona zona2 = zona1;
+		////cout << endl << zona2;
+		//Zona zona3;
+		//zona3 = zona1;
+		//cout << endl << zona3;
 
+		//zona3 = zona3 + 10;
+
+		//cout << endl << zona3;
+		//cout << endl << zona3[4] << endl;
+		////zona 5:
+		//cin >> zona5;
+		//cout << endl << zona5;
+	}
 
 	return 0;
 }
