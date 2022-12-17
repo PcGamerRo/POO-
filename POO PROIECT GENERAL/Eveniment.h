@@ -243,7 +243,6 @@ public:
 		return x;
 	}
 
-
 	//operator =
 	Eveniment operator=(const Eveniment i) {
 		Eveniment& x = *this;

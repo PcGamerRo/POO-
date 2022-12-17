@@ -11,7 +11,7 @@ int Eveniment::nrBileteDisponibile = 200;
 
 int main()
 {
-	Eveniment event1; // it meets the requirements!
+	Eveniment event1; 
 	if (1 != 0) {
 		////cin >> event1;
 		//cout << endl;
@@ -70,6 +70,37 @@ int main()
 
 		//bilet3 = bilet3 - 2;
 		//cout << bilet3 << endl;
+	}
+
+	Locatie locatie1;
+	if (3 != 0) {
+		////cin >> locatie1;	
+		////cin >> locatie2;
+
+		//locatie1.setDenumireLocatie("Arenele Romane");
+		//locatie1.setNrLocuriDisponibile(2000);
+		//locatie1.setNrZone(3);
+		//locatie1.setRating(3.5);
+
+		//Locatie locatie2 = locatie1;
+		//locatie2.setNrZone(10);
+
+		//cout << locatie2.getDenumire() << endl;
+		//cout << locatie2.getNrLocuriDisponobile() << endl;
+		//cout << locatie2.getNrZone() << endl;
+		//cout << locatie2.getRating() << endl;
+
+		//cout << endl;
+
+		////cout << endl;
+		////cout << locatie1 << endl;
+		////cout << locatie2;
+
+		////cout << (locatie1 == locatie2);
+		////cout << int(locatie1);
+
+		//Locatie locatie3("", 0, -1, 6);
+		//cout << endl << locatie3;
 	}
 
 

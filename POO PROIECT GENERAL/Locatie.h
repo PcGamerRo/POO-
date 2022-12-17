@@ -7,11 +7,12 @@ using namespace std;
 
 class Locatie
 {
-	int nrLocuriDisponibile;
-	string denumireLocatie;
+	int nrLocuriDisponibile=0;
+	string denumireLocatie="necunoscuta";
 	int nrZone=1;
 	float ratingLocatie=5;
 	int index = 1; //folosit pentru a contoriza rating-urile primite
+	//Zona* zone;
 public:
 	//metoda #1
 	int locuriNeutilizate() { //in cazul in care sunt mai putine bilete decat locuri disponibile
@@ -28,66 +29,107 @@ public:
 		else cout << "Introduceti o valoare intre 1.0 si 5.0 stele!";
 	}
 
-	Zona* zone;
 	Locatie() {
 		denumireLocatie = "necunoscuta";
 		nrZone = 1;
+		nrLocuriDisponibile = 0;
+		ratingLocatie = 5;
 	}
-	Locatie(string denumire, int nrZone, int nrLocuriDisponibile/*, const Zona* zone*/) {
-		denumireLocatie = denumire;
-		this->nrZone = nrZone;
-		this->nrLocuriDisponibile = nrLocuriDisponibile;
-		//if (zone != NULL && nrZone > 0) {
-		//	delete[] this->zone;
-		//	this->zone = new Zona[nrZone];
-		//}
-		//for (int i = 0; i < nrZone; i++) {
-		//	this->zone[i] = zone[i];
-		//}
+	Locatie(string denumire, int nrZone, int nrLocuriDisponibile, float rating) {
+		if (denumire.length() >= 1)
+			this->denumireLocatie = denumire;
+		else cout << "Denumirea trebuie sa contina cel putin un caracter!" << endl;
+		
+		if (nrZone > 0)
+			this->nrZone = nrZone;
+		else cout << "Trebuie sa existe cel putin o zona!" << endl;
+		
+		if (nrLocuriDisponibile >= 0)
+			this->nrLocuriDisponibile = nrLocuriDisponibile;
+		else cout << "Numarul de locuri nu poate fi negativ!" << endl;
+
+		if (rating >= 1 && rating <= 5)
+			this->ratingLocatie = rating;
+		else
+			cout << endl << "Introduceti o valoare intre 1.0 si 5.0 stele!" << endl;
 	}
-	void setDenumireLocatie(string denumire) { this->denumireLocatie = denumire; }
-	void setNrZone(int x) { this->nrZone = x; }
-	void setRating(float x) { 
-		if (x>=1 && x<=5) 
-			this->ratingLocatie = x; 
-		else  
-			cout << "Introduceti o valoare intre 1.0 si 5.0 stele!";
+
+	//setteri validati
+	void setDenumireLocatie(string denumire) { 
+		if (denumire.length() >= 1)
+			this->denumireLocatie = denumire;
+		else cout << "Denumirea trebuie sa contina cel putin un caracter!";
+	}
+	void setNrZone(int nrZone) {
+		if (nrZone > 0)
+			this->nrZone = nrZone;
+		else cout << "Trebuie sa existe cel putin o zona!";
+	}
+	void setNrLocuriDisponibile(int nrLocuriDisponibile) {
+		if (nrLocuriDisponibile >= 0)
+			this->nrLocuriDisponibile = nrLocuriDisponibile;
+		else cout << "Numarul de locuri nu poate fi negativ!";
+	};
+	void setRating(float rating) {
+		if (rating >= 1 && rating <= 5)
+			this->ratingLocatie = rating;
+		else
+			cout << endl << "Introduceti o valoare intre 1.0 si 5.0 stele!" << endl;
 	}
 
 	string getDenumire() { return denumireLocatie; }
 	int getNrZone() { return nrZone; }
-
-	int getNrLocuriDisponobile() {
-		int sum = 0, n=nrZone;
-		for (int i = 0; i < nrZone; i++) {
-			sum += zone[i].getNrL();
-		}
-		//cout << zone[0].getNrL();
-		nrLocuriDisponibile = sum;
-		return sum;
-	}
+	int getNrLocuriDisponobile() { return nrLocuriDisponibile; }
 	float getRating() { return ratingLocatie; }
 
 	friend istream& operator>>(istream& in, Locatie& x) {
 		cout << "Denumire locatie: ";
-		in.get();
-		getline(in, x.denumireLocatie);
+
+		string copieString;
+		getline(in, copieString);
+		if (x.denumireLocatie.length() >= 1)
+			x.denumireLocatie = copieString;
+		else cout << "Denumirea trebuie sa contina cel putin un caracter!";
+
+		int copieInt;
 		cout << "Numar zone / categorii: ";
-		in >> x.nrZone;
+		in >> copieInt;
+		if (copieInt > 0)
+			x.nrZone = copieInt;
+		else cout << "Trebuie sa existe cel putin o zona!";
+
+		cout << "Numarul total de locuri: ";
+		in >> copieInt;
+		if (copieInt >= 0)
+			x.nrLocuriDisponibile = copieInt;
+		else cout << "Numarul de locuri nu poate fi negativ!";
+
+		float copieFloat;
+		cout << "Rating locatie: ";
+		in >> copieFloat;
+		if (copieFloat >= 1 && copieFloat <= 5)
+			x.ratingLocatie = copieFloat;
+		else cout << "Numarul de locuri nu poate fi negativ!";
+
+		in.get();
 		return in;
 	}
 	friend ostream& operator<<(ostream& out, Locatie x) {
 		out << "Denumire locatie: " << x.denumireLocatie << endl;
 		out << "Numar zone / categorii: " << x.nrZone << endl;
-		//out << "Numar total de locuri: " << x.getNrLocuriDisponobile() << endl;
+		out << "Numar total de locuri: " << x.nrLocuriDisponibile << endl;
+		out << "Rating-ul locatiei este: " << x.ratingLocatie << endl;
 		return out;
 	}
+
 	Locatie(const Locatie& x) {
 		denumireLocatie = x.denumireLocatie;
 		nrZone = x.nrZone;
 		nrLocuriDisponibile = x.nrLocuriDisponibile;
+		ratingLocatie = x.ratingLocatie;
 	}
 
+	//supraincarcare ==
 	bool operator==(const Locatie y) {
 		Locatie& x = *this;
 		if (x.nrLocuriDisponibile == y.nrLocuriDisponibile)
@@ -99,9 +141,9 @@ public:
 		return false;
 	}
 
+	//supraincarcare cast explicit
 	explicit operator int()
 	{
 		return ratingLocatie;
 	}
-
 };
