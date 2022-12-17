@@ -123,7 +123,12 @@ int main()
 		//cout << endl << zona5;
 	}
 
-	cin >> event1;
-	cout << event1;
+	//cin >> event1;
+	//cout << event1;
+
+	//cin >> bilet1;
+	//cin >> bilet2;
+	//cout << bilet1 << endl<<bilet2;
+
 	return 0;
 }

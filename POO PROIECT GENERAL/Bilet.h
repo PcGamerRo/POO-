@@ -45,8 +45,16 @@ public:
 	friend istream& operator>>(istream &in, Bilet &x){
 		cout << "Tip bilet:  ";
 		getline(in, x.tipBilet);
+		
 		cout << "Pret: ";
 		in >> x.pret;
+		while (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(100, '\n');
+			cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
+			in >> x.pret;
+		}
 		in.get();
 		return in;
 	}
