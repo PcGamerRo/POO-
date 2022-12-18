@@ -8,7 +8,7 @@ using namespace std;
 
 int Eveniment::nrBileteDisponibile = 200;
 int Locatie::nrLocuriDisponibile = 600;
-
+ 
 int main()
 {	
 	//		VERIFICARE FUNCTIONALITATE CLASE
