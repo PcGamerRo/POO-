@@ -84,6 +84,7 @@ int main()
 		zona2 = zona2 + 5;
 		cout << zona2;
 		cout << "(au fost adaugate 5 locuri libere, adica locOcupat[i] = 0 )";
+		break;
 	}
 	default:
 		break;
