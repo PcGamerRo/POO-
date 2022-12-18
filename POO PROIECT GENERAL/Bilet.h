@@ -9,86 +9,25 @@ class Bilet
 	string tipBilet;
 	float pret;
 public:
-	//metoda #1
-	void checkValoare(int cantitate) {
-		cout << pret * cantitate;
-	}
-	//metoda #2
-	void aplicareReducereGenerala(float procente) {
-		pret = pret - pret * procente / 100;
-	}
+	Bilet();
+	Bilet(string ID, string Tip, float Pret);
+	Bilet(const Bilet& x);
+	//metode
+	void checkValoare(int cantitate);
+	void aplicareReducereGenerala(float procente);
+	//settei
+	void setTip(string tip);
+	void setPret(float x);
+	//getteri
+	string getId();
+	string getTip();
+	float getPret();
 
-	Bilet() : IdBilet("x") {
-		tipBilet = "Necunoscut";
-		pret = 0.0;
-	}
-	Bilet(string ID, string Tip, float Pret) : IdBilet(ID) {
-		tipBilet = Tip;
-		pret = Pret;
-	}
+	//supraincarcari
+	friend istream& operator>>(istream&, Bilet&);
+	friend ostream& operator<<(ostream&, Bilet);
 
-	void setTip(string tip) { 
-		if (tip.length() < 1)
-			cout << "Tipul biletului trebuie sa aiba cel putin un caracter!";
-		this->tipBilet = tip; 
-	}
-	void setPret(float x) { 
-		if (x < 0)
-			cout << "Pretul nu poate fi negativ!";
-		this->pret = x; 
-	}
-
-	string getId() { return IdBilet; }
-	string getTip() { return tipBilet; }
-	float getPret() { return pret; }
-
-	//validated
-	friend istream& operator>>(istream &in, Bilet &x){
-		cout << "Tip bilet:  ";
-		getline(in, x.tipBilet);
-		
-		cout << "Pret: ";
-		in >> x.pret;
-		while (cin.fail())
-		{
-			cin.clear();
-			cin.ignore(100, '\n');
-			cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
-			in >> x.pret;
-		}
-		in.get();
-		return in;
-	}
-	friend ostream& operator<<(ostream& out, Bilet x) {
-		out << "Tip bilet:  " << x.tipBilet << endl;
-		out << "Pret: " << x.pret << endl;
-		return out;
-	}
-
-	Bilet(const Bilet& x) {
-		tipBilet = x.tipBilet;
-		pret = x.pret;
-	}
-
-	//supraincarcare operator+
-	Bilet operator+(int i) {
-		Bilet& x = *this;
-		x.pret += i;
-		return x;
-	}
-
-	//supraincarcare operator-
-	Bilet operator-(int i) {
-		Bilet& x = *this;
-		x.pret -= i;
-		return x;
-	}
-
-	Bilet operator=(const Bilet& i) {
-		Bilet& x = *this;
-		//x.IdBilet = i.IdBilet;
-		x.tipBilet = i.tipBilet;
-		x.pret = i.pret;
-		return x;
-	}
+	Bilet operator+(int i);
+	Bilet operator-(int i);
+	Bilet operator=(const Bilet& i);
 };
