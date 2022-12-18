@@ -3,7 +3,6 @@
 #include "Bilet.h"
 #include "Locatie.h"
 #include "Zona.h"
-#include "AchizitieBilet.h"
 
 using namespace std;
 
@@ -13,15 +12,29 @@ int main()
 {	
 	//		VERIFICARE FUNCTIONALITATE CLASE
 	//Clasa Eveniment.h
+	//Eveniment event1;
+	//cin >> event1;
+	//cout << event1;
+	//event1.evenimentRatat(18, 12, 2022); //metoda1
+	//event1.epuizareBilete(15); //metoda2 - statica
+	//cout << "Bilete ramase: " << event1.getBileteDisp() << endl;
+	//Eveniment event2((char*)"concert rock", 18, 01, 2023, 17, 00, 2);
+	//cout << event2;
+
+	//if ((event2 > event1) == 1)
+	//	cout << "Evenimentul 2 incepe mai tarziu decat evenimentul 1";
+	//else
+	//	cout << "Evenimentul 2 NU incepe mai tarziu decat evenimentul 1";
 	
-	Eveniment event1((char*)"eveniment de calitate", 17, 12, 2022, 22, 00, 1);
-	cout << event1.getDenumire() << endl;
-	cout << event1.getZi() << endl;
-	cout << event1.getLuna() << endl;
-	cout << event1.getAn() << endl;
-	cout << event1.getOra() << endl;
-	cout << event1.getMinute() << endl;
-	cout << event1.getNrCategorii() << endl;
-	cout << event1.getBileteDisp() << endl;
+	/*Bilet bilet1;
+	cout<<bilet1.getId();*/
+	//Locatie locatie1;
+	//cin >> locatie1;
+	//cout << locatie1;
+
+	Zona zona1;
+	cin >> zona1;
+	cout << zona1;
+	
 	return 0;
 }
