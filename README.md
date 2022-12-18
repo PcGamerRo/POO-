@@ -1,33 +1,33 @@
-#PIETROIU ROBERT ADRIAN 
+PIETROIU ROBERT ADRIAN 
 
 GRUPA 1058 
 
 SERIA E - INFORMATICA ECONOMICA
 
-## *The Ticketing App*
+# *The Ticketing App*
 
 _Creați o aplicație ce permite gestionarea biletelor emise pentru diferite evenimente (film, piesă de teatru, meci de fotbal, etc.)_
 
 
 Aplicația va avea următoarele funcționalități:
 
-va permite citirea caracteristicilor locației (ex: număr maxim de locuri, număr de rânduri, zone, număr/codificare scaune pe rând, etc.)
-va permite citirea caracteristicilor evenimentului (ex: dată, oră, denumire, etc.)
-permite generarea de bilete nominale conform caracteristicilor dorite (ex: VIP, peluză, tribună, loje, etc.)
-biletele generate vor avea un id unic ce va putea fi verificat ulterior (id-ul va fi generat aleator astfel încât să nu existe id-uri duplicate pentru același eveniment și nici posibilitatea ca participanții să ghicească id-urile biletelor)
-aplicația va pune la dispoziția utilizatorului un meniu unde va putea introduce caracteristicile locației și ale evenimentului, va putea genera și ulterior valida biletele emise
-aplicația trebuie să trateze orice fel de input și va afișa mesaje de eroare dacă acesta este invalid
-aplicația nu va genera erori de execuție pentru niciun fel de input
-NU pot fi folosite biblioteci externe (third party) pentru citirea sau validarea datelor
-soluția trebuie implementată utilizând doar biblioteci standard din C++ (precum iostream, string, fstream, etc) utilizate în cadrul cursurilor și laboratoarelor. Clasele STL nu sunt acceptate decât atunci când sunt cerute în mod explicit (doar în cadrul fazei 2)
+> va permite citirea caracteristicilor locației (ex: număr maxim de locuri, număr de rânduri, zone, număr/codificare scaune pe rând, etc.)
+> va permite citirea caracteristicilor evenimentului (ex: dată, oră, denumire, etc.)
+> permite generarea de bilete nominale conform caracteristicilor dorite (ex: VIP, peluză, tribună, loje, etc.)
+> biletele generate vor avea un id unic ce va putea fi verificat ulterior (id-ul va fi generat aleator astfel încât să nu existe id-uri duplicate pentru același eveniment și nici posibilitatea ca participanții să ghicească id-urile biletelor)
+> aplicația va pune la dispoziția utilizatorului un meniu unde va putea introduce caracteristicile locației și ale evenimentului, va putea genera și ulterior valida > > biletele emise
+> aplicația trebuie să trateze orice fel de input și va afișa mesaje de eroare dacă acesta este invalid
+> aplicația nu va genera erori de execuție pentru niciun fel de input
+> NU pot fi folosite biblioteci externe (third party) pentru citirea sau validarea datelor
+> soluția trebuie implementată utilizând doar biblioteci standard din C++ (precum iostream, string, fstream, etc) utilizate în cadrul cursurilor și laboratoarelor.  > > Clasele STL nu sunt acceptate decât atunci când sunt cerute în mod explicit (doar în cadrul fazei 2)
 
 
 Exemple de scenarii de luat în considerare:
 
 
-Emitere de bilete de fotbal într-un stadion dotat cu o peluză și două tribune (tribuna 1 și tribuna 2). Fiecare zonă are rând și loc. Biletele pentru un anumit meci se vor genera în limita locurilor disponibile. Atunci când un utilizator prezintă biletul se va verifica id-ul unic al acestuia pentru a vedea dacă este valid.
-Emitere de bilete la film din categoriile Normal sau VIP. Fiecare zonă are rând și loc. Biletele se vor genera în limita locurilor disponibile. Atunci când un utilizator prezintă biletul se va verifica id-ul unic al acestuia pentru a vedea dacă este valid.
-Emitere de bilete la teatru din categoriile Categoria 1, Categoria 2 și Lojă. Fiecare zonă are rând și loc. Biletele se vor genera în limita locurilor disponibile. Atunci când un utilizator prezintă biletul se va verifica id-ul unic al acestuia pentru a vedea dacă este valid.
+> Emitere de bilete de fotbal într-un stadion dotat cu o peluză și două tribune (tribuna 1 și tribuna 2). Fiecare zonă are rând și loc. Biletele pentru un anumit meci > se vor genera în limita locurilor disponibile. Atunci când un utilizator prezintă biletul se va verifica id-ul unic al acestuia pentru a vedea dacă este valid.
+> Emitere de bilete la film din categoriile Normal sau VIP. Fiecare zonă are rând și loc. Biletele se vor genera în limita locurilor disponibile. Atunci când un > utilizator prezintă biletul se va verifica id-ul unic al acestuia pentru a vedea dacă este valid.
+> Emitere de bilete la teatru din categoriile Categoria 1, Categoria 2 și Lojă. Fiecare zonă are rând și loc. Biletele se vor genera în limita locurilor disponibile. > Atunci când un utilizator prezintă biletul se va verifica id-ul unic al acestuia pentru a vedea dacă este valid.
 
 
 Faza 1:
