@@ -78,17 +78,17 @@ istream& operator>>(istream& in, Zona& x) {
 		getline(in, x.denumire);
 	}
 
-	cout << "Numar locuri: ";
-	in >> x.nrLocuri;
-	while (cin.fail() || x.nrLocuri < 1) {
-		if (cin.fail())
-			cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
-		else
-			cout << "Trebuie sa existe cel putin un loc!";
-		cin.clear();
-		cin.ignore(100, '\n');
-		in >> x.nrLocuri;
-	}
+	//cout << "Numar locuri: ";
+	//in >> x.nrLocuri;
+	//while (cin.fail() || x.nrLocuri < 1) {
+	//	if (cin.fail())
+	//		cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
+	//	else
+	//		cout << "Trebuie sa existe cel putin un loc!";
+	//	cin.clear();
+	//	cin.ignore(100, '\n');
+	//	in >> x.nrLocuri;
+	//}
 
 	cout << "Numar randuri: ";
 	in >> x.nrRanduri;
@@ -102,20 +102,20 @@ istream& operator>>(istream& in, Zona& x) {
 		in >> x.nrRanduri;
 	}
 
-	cout << "Locuri ocupate: 1-ocupat 0-liber: " << endl;
-	x.locOcupat = new int[x.nrLocuri];
-	for (int i = 0; i < x.nrLocuri; i++) {
-		cout << "Locul " << i << ": ";
-		in >> x.locOcupat[i];
-		while (cin.fail() || (x.locOcupat[i] != 0 && x.locOcupat[i] != 1)) {
-			if (cin.fail())
-				cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
-			else cout << "Valorile introduse trebuie sa fie in multimea {0, 1}! incercati din nou: ";
-			cin.clear();
-			cin.ignore(100, '\n');
-			in >> x.locOcupat[i];
-		}
-	}
+	//cout << "Locuri ocupate: 1-ocupat 0-liber: " << endl;
+	//x.locOcupat = new int[x.nrLocuri];
+	//for (int i = 0; i < x.nrLocuri; i++) {
+	//	cout << "Locul " << i << ": ";
+	//	in >> x.locOcupat[i];
+	//	while (cin.fail() || (x.locOcupat[i] != 0 && x.locOcupat[i] != 1)) {
+	//		if (cin.fail())
+	//			cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
+	//		else cout << "Valorile introduse trebuie sa fie in multimea {0, 1}! incercati din nou: ";
+	//		cin.clear();
+	//		cin.ignore(100, '\n');
+	//		in >> x.locOcupat[i];
+	//	}
+	//}
 
 	in.get();
 	return in;
@@ -125,7 +125,6 @@ ostream& operator<<(ostream& out, Zona x) {
 	out << "Denumire zona: " << x.denumire << endl;
 	out << "Numar locuri: " << x.nrLocuri << endl;
 	out << "Numar randuri: " << x.nrRanduri << endl;
-	//out << "Numar locuri pe rand: " << x.getNumarLocuri_peRand() << endl;
 	out << "Locuri ocupate: 1-ocupat 0-liber" << endl;
 	for (int i = 0; i < x.nrLocuri; i++) {
 		out << "locul " << i << ": " << x.locOcupat[i] << endl;

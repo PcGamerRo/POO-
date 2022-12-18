@@ -7,7 +7,7 @@ using namespace std;
 
 class Locatie
 {
-	int nrLocuriDisponibile=0;
+	static int nrLocuriDisponibile;
 	string denumireLocatie="necunoscuta";
 	int nrZone=1;
 	float ratingLocatie=5;

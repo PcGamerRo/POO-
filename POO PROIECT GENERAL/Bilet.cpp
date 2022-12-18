@@ -15,7 +15,7 @@ Bilet::Bilet(const Bilet& x) {
 
 //metode
 void Bilet::checkValoare(int cantitate) {
-	cout << pret * cantitate;
+	cout << "Valoarea totala pentru " << cantitate << " bilete este : " << pret * cantitate;
 }
 void Bilet::aplicareReducereGenerala(float procente) {
 	pret = pret - pret * procente / 100;
@@ -56,10 +56,10 @@ istream& operator>>(istream& in, Bilet& x) {
 	return in;
 }
 ostream& operator<<(ostream& out, Bilet x) {
-	out << endl;
+	out << endl << endl;
 	out << "Tip bilet:  " << x.tipBilet << endl;
 	out << "Pret: " << x.pret << endl;
-	out << endl << endl;
+	out << endl;
 	return out;
 }
 
