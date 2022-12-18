@@ -223,6 +223,8 @@ istream& operator>>(istream& in, Eveniment& x) {
 		cin.ignore(100, '\n');
 		in >> x.nrCategoriiBilete;
 	}
+	in.get();
+
 	return in;
 }
 ostream& operator<<(ostream& out, Eveniment x) {

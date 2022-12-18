@@ -87,10 +87,12 @@ istream& operator>>(istream& in, Locatie& x) {
 
 	cout << "Numarul total de locuri: ";
 	in >> x.nrLocuriDisponibile;
-	while (x.nrLocuriDisponibile < 0 || cin.fail()) {
+	while (x.nrLocuriDisponibile < 0 || cin.fail() || x.nrLocuriDisponibile<Eveniment::getBileteDisp()) {
 		if (cin.fail())
 			cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
-		else cout << "Numarul de locuri nu poate fi negativ!";
+		else if (x.nrLocuriDisponibile < 0)
+			cout << "Numarul de locuri nu poate fi negativ!";
+		else cout << "Numarul de locuri nu poate fi mai mic decat numarul de bilete! ";
 		cin.clear();
 		cin.ignore(100, '\n');
 		in >> x.nrLocuriDisponibile;
@@ -122,12 +124,11 @@ ostream& operator<<(ostream& out, Locatie x) {
 
 bool Locatie::operator==(const Locatie y) {
 	Locatie& x = *this;
-	if (x.nrLocuriDisponibile == y.nrLocuriDisponibile)
-		if (x.denumireLocatie == y.denumireLocatie)
-			if (x.nrLocuriDisponibile == y.nrLocuriDisponibile)
-				if (x.nrZone == y.nrZone)
-					if (x.ratingLocatie == y.ratingLocatie)
-						return true;
+	if (x.denumireLocatie == y.denumireLocatie)
+		if (x.Locatie::nrLocuriDisponibile == y.Locatie::nrLocuriDisponibile)
+			if (x.nrZone == y.nrZone)
+				if (x.ratingLocatie == y.ratingLocatie)
+					return true;
 	return false;
 }
 Locatie::operator int()

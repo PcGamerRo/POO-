@@ -127,7 +127,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AchizitieBilet.cpp" />
     <ClCompile Include="Bilet.cpp" />
     <ClCompile Include="Eveniment.cpp" />
     <ClCompile Include="Locatie.cpp" />
@@ -135,7 +134,6 @@
     <ClCompile Include="Zona.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AchizitieBilet.h" />
     <ClInclude Include="Bilet.h" />
     <ClInclude Include="Eveniment.h" />
     <ClInclude Include="Locatie.h" />
