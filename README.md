@@ -1,10 +1,12 @@
 #PIETROIU ROBERT ADRIAN 
-#GRUPA 1058 
-#SERIA E - INFORMATICA ECONOMICA-
 
-The Ticketing App
+GRUPA 1058 
 
-Creați o aplicație ce permite gestionarea biletelor emise pentru diferite evenimente (film, piesă de teatru, meci de fotbal, etc.)
+SERIA E - INFORMATICA ECONOMICA
+
+*The Ticketing App*
+
+_Creați o aplicație ce permite gestionarea biletelor emise pentru diferite evenimente (film, piesă de teatru, meci de fotbal, etc.)_
 
 
 Aplicația va avea următoarele funcționalități:
