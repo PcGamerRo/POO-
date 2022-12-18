@@ -4,7 +4,7 @@ GRUPA 1058
 
 SERIA E - INFORMATICA ECONOMICA
 
-*The Ticketing App*
+## *The Ticketing App*
 
 _Creați o aplicație ce permite gestionarea biletelor emise pentru diferite evenimente (film, piesă de teatru, meci de fotbal, etc.)_
 
