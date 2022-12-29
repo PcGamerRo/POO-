@@ -6,14 +6,14 @@ Zona::Zona() {
 	nrRanduri = 1;
 	locOcupat = new int[1]{ 0 };
 }
-Zona::Zona(string denumire, int nrL, int nrR, int* nrLoc) :Zona() {
+Zona::Zona(string denumire, int nrL, int nrR) :Zona() {
 	this->denumire = denumire;
 	this->nrLocuri = nrL;
 	this->nrRanduri = nrR;
 	locOcupat = new int[this->nrLocuri];
-	for (int i = 0; i < this->nrLocuri; i++) {
-		locOcupat[i] = nrLoc[i];
-	}
+	//for (int i = 0; i < this->nrLocuri; i++) {
+	//	locOcupat[i] = nrLoc[i];
+	//}
 }
 Zona::Zona(const Zona& x) {
 	denumire = x.denumire;

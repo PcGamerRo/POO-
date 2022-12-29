@@ -13,7 +13,7 @@ Eveniment::Eveniment() {
 
 	nrCategoriiBilete = 1;
 }
-Eveniment::Eveniment(char* denumire, int zi, int luna, int an, int ora, int minute, int nrCategorii) {
+Eveniment::Eveniment(const char* denumire, int zi, int luna, int an, int ora, int minute, int nrCategorii) {
 	denumireEveniment = new char[strlen(denumire) + 1];
 	strcpy_s(denumireEveniment, strlen(denumire) + 1, denumire);
 

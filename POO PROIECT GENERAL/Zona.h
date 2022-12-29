@@ -12,7 +12,7 @@ class Zona
 	int* locOcupat; //se marcheaza cu 1-ocupat si 0-liber
 public:
 	Zona();
-	Zona(string denumire, int nrL, int nrR, int* nrLoc);
+	Zona(string denumire, int nrL, int nrR);
 	Zona(const Zona& x);
 	~Zona();
 

@@ -18,7 +18,7 @@ private:
 	int minute;
 public:
 	Eveniment();
-	Eveniment(char* denumire, int zi, int luna, int an, int ora, int minute, int nrCategorii);
+	Eveniment(const char* denumire, int zi, int luna, int an, int ora, int minute, int nrCategorii);
 	Eveniment(const Eveniment& x);
 	~Eveniment();
 	//metode
