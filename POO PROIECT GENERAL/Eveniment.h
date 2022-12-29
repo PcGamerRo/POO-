@@ -9,7 +9,6 @@ class Eveniment
 {
 private:
 	char* denumireEveniment;
-	static int nrBileteDisponibile;
 	int nrCategoriiBilete;
 	int zi;
 	int luna;

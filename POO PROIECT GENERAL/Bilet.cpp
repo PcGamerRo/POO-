@@ -5,11 +5,13 @@ Bilet::Bilet() {
 	tipBilet = "Necunoscut";
 	pret = 0.0;
 	numar = 1;
+	nrBileteDisponibile = 0;
 }
 Bilet::Bilet(string Tip, float Pret, int numar) {
 	tipBilet = Tip;
 	pret = Pret;
 	this->numar = numar;
+	Bilet::nrBileteDisponibile += numar;
 	//generare();
 }
 Bilet::Bilet(const Bilet& x) {
@@ -54,6 +56,7 @@ void Bilet::setNumar(int x) {
 string Bilet::getTip() { return tipBilet; }
 float Bilet::getPret() { return pret; }
 int Bilet::getNumar() { return numar; }
+int Bilet::getNrBilete() { return Bilet::nrBileteDisponibile; }
 
 //supraincarcari
 istream& operator>>(istream& in, Bilet& x) {
@@ -78,6 +81,7 @@ istream& operator>>(istream& in, Bilet& x) {
 		cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
 		in >> x.numar;
 	}
+	Bilet::nrBileteDisponibile += x.numar;
 	in.get();
 	return in;
 }

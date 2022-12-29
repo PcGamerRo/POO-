@@ -7,6 +7,7 @@ using namespace std;
 class Bilet
 {
 	//const string IdBilet;
+	static int nrBileteDisponibile;
 	string tipBilet;
 	float pret;
 	int numar; //nr bilete disponibile din acest tip
@@ -27,6 +28,7 @@ public:
 	string getTip();
 	float getPret();
 	int getNumar();
+	static int getNrBilete();
 
 	//supraincarcari
 	friend istream& operator>>(istream&, Bilet&);

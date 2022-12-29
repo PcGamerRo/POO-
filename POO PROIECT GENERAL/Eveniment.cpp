@@ -34,7 +34,7 @@ Eveniment::Eveniment(const Eveniment& x) {
 	an = x.an;
 	ora = x.ora;
 	minute = x.minute;
-	nrBileteDisponibile = x.nrBileteDisponibile;
+	//nrBileteDisponibile = x.nrBileteDisponibile;
 	nrCategoriiBilete = x.nrCategoriiBilete;
 }
 Eveniment::~Eveniment() { delete denumireEveniment; }
@@ -62,11 +62,11 @@ void Eveniment::evenimentRatat(int x, int y, int z) {
 		else cout << "Evenimentul nu a inceput inca!" << endl;
 	}
 }
-void Eveniment::epuizareBilete(int x) {
-	if (nrBileteDisponibile >= x)
-		nrBileteDisponibile -= x;
-	else cout << endl << "Nu sunt suficiente bilete! valoarea maxima este: " << nrBileteDisponibile << endl << endl;
-}
+//void Eveniment::epuizareBilete(int x) {
+//	if (nrBileteDisponibile >= x)
+//		nrBileteDisponibile -= x;
+//	else cout << endl << "Nu sunt suficiente bilete! valoarea maxima este: " << nrBileteDisponibile << endl << endl;
+//}
 
 //setters
 void Eveniment::setDenumire(char* denumire) {
@@ -83,12 +83,12 @@ void Eveniment::setDenumire(char* denumire) {
 	}
 	else cout << "denumirea trebuie sa fie diferita de nullptr!" << endl;
 }
-void Eveniment::setNrBileteDisponibile(int x) {
-	if (x < 0)
-		cout << "Numarul de bilete disponibile nu poate fi negativ!";
-	else
-		nrBileteDisponibile = x;
-}
+//void Eveniment::setNrBileteDisponibile(int x) {
+//	if (x < 0)
+//		cout << "Numarul de bilete disponibile nu poate fi negativ!";
+//	else
+//		nrBileteDisponibile = x;
+//}
 void Eveniment::setZi(int x) {
 	if (x > 31 || x < 1) {
 		cout << "ziua trebuie sa aiba o valoare cuprinsa intre 1 si 31!" << endl;
@@ -123,14 +123,14 @@ void Eveniment::setCategoriiBilete(int nr) {
 
 //getters
 char* Eveniment::getDenumire() { return denumireEveniment; }
-int Eveniment::getNrBilete() { return nrBileteDisponibile; }
+//int Eveniment::getNrBilete() { return nrBileteDisponibile; }
 int Eveniment::getZi() { return zi; }
 int Eveniment::getLuna() { return luna; }
 int Eveniment::getAn() { return an; }
 int Eveniment::getOra() { return ora; }
 int Eveniment::getMinute() { return minute; }
 int Eveniment::getNrCategorii() { return nrCategoriiBilete; }
-int Eveniment::getBileteDisp() { return Eveniment::nrBileteDisponibile; }
+//int Eveniment::getBileteDisp() { return Eveniment::nrBileteDisponibile; }
 
 //supraincarcari
 istream& operator>>(istream& in, Eveniment& x) {
@@ -140,15 +140,15 @@ istream& operator>>(istream& in, Eveniment& x) {
 	x.denumireEveniment = new char[strlen(buff) + 1];
 	strcpy_s(x.denumireEveniment, strlen(buff) + 1, buff);
 
-	cout << "Numar bilete disponibile: ";
-	in >> x.nrBileteDisponibile;
-	while (cin.fail())
-	{
-		cin.clear();
-		cin.ignore(100, '\n');
-		cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
-		in >> x.nrBileteDisponibile;
-	}
+	//cout << "Numar bilete disponibile: ";
+	//in >> x.nrBileteDisponibile;
+	//while (cin.fail())
+	//{
+		//cin.clear();
+		//cin.ignore(100, '\n');
+		//cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
+		//in >> x.nrBileteDisponibile;
+	//}
 
 	cout << "Data: (numere intregi)" << endl;
 	cout << "-	Zi: ";
@@ -230,7 +230,7 @@ istream& operator>>(istream& in, Eveniment& x) {
 ostream& operator<<(ostream& out, Eveniment x) {
 	out << endl;
 	out << "Denumire eveniment: " << x.denumireEveniment << endl;
-	out << "Numar bilete disponibile: " << x.nrBileteDisponibile << endl;
+	//out << "Numar bilete disponibile: " << x.nrBileteDisponibile << endl;
 	out << "Data: ";
 	if (x.zi < 10) out << "0" << x.zi;
 	else out << x.zi;

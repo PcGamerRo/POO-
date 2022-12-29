@@ -21,7 +21,7 @@ Locatie::Locatie(const Locatie& x) {
 
 //metode
 int Locatie::locuriNeutilizate() { //in cazul in care sunt mai putine bilete decat locuri disponibile
-	return nrLocuriDisponibile - Eveniment::getBileteDisp();
+	return nrLocuriDisponibile - Bilet::getNrBilete();
 }
 void Locatie::acordareRating(float rating) { //rating=[1.0 stele; 5.0 stele]
 	if (rating >= 1 && rating <= 5) {
@@ -87,7 +87,7 @@ istream& operator>>(istream& in, Locatie& x) {
 
 	cout << "Numarul total de locuri: ";
 	in >> x.nrLocuriDisponibile;
-	while (x.nrLocuriDisponibile < 0 || cin.fail() || x.nrLocuriDisponibile<Eveniment::getBileteDisp()) {
+	while (x.nrLocuriDisponibile < 0 || cin.fail() || x.nrLocuriDisponibile<Bilet::getNrBilete()) {
 		if (cin.fail())
 			cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
 		else if (x.nrLocuriDisponibile < 0)

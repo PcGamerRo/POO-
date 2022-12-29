@@ -78,17 +78,17 @@ istream& operator>>(istream& in, Zona& x) {
 		getline(in, x.denumire);
 	}
 
-	//cout << "Numar locuri: ";
-	//in >> x.nrLocuri;
-	//while (cin.fail() || x.nrLocuri < 1) {
-	//	if (cin.fail())
-	//		cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
-	//	else
-	//		cout << "Trebuie sa existe cel putin un loc!";
-	//	cin.clear();
-	//	cin.ignore(100, '\n');
-	//	in >> x.nrLocuri;
-	//}
+	cout << "Numar locuri: ";
+	in >> x.nrLocuri;
+	while (cin.fail() || x.nrLocuri < 1) {
+		if (cin.fail())
+			cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
+		else
+			cout << "Trebuie sa existe cel putin un loc!";
+		cin.clear();
+		cin.ignore(100, '\n');
+		in >> x.nrLocuri;
+	}
 
 	cout << "Numar randuri: ";
 	in >> x.nrRanduri;

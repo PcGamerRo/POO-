@@ -9,12 +9,13 @@ private:
 public:
 	void genereazaBilete(Bilet b[], int x, Zona z[], int y) {
 		int i = 0, j = 0, k = 0, loc_de_ocupat = 0;
+		string id="18488c5f-15ea-4318";
 		while (i < x) {
 			cout << "Bilete de tip " << b[i].getTip() << endl;
 			j = 0;
 			while (j < b[i].getNumar()) {
-				cout <<	"id " << j << "		";
-				cout << b[i].getTip() << "		";
+				cout <<	"id " << loc_de_ocupat << "		";
+				cout << "tip " << b[i].getTip() << "		";
 				cout << "pret aplicat " << b[i].getPret() << "		";
 				cout << z[k].getDenumire() << "	";
 				cout << "locul " << loc_de_ocupat << endl;
