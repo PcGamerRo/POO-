@@ -33,14 +33,14 @@ public:
 	void setCategoriiBilete(int nr);
 	//getters
 	char* getDenumire();
-	static int getNrBilete();
+	//static int getNrBilete();
 	int getZi();
 	int getLuna();
 	int getAn();
 	int getOra();
 	int getMinute();
 	int getNrCategorii();
-	static int getBileteDisp();
+	//static int getBileteDisp();
 
 	//supraincarcari
 	friend istream& operator>>(istream&, Eveniment&);

@@ -17,7 +17,7 @@ public:
 	Bilet(string Tip, float Pret, int numar);
 	Bilet(const Bilet& x);
 	//metode
-	void checkValoare(int cantitate);
+	float checkValoare(int cantitate);
 	void aplicareReducereGenerala(float procente);
 	void genereaza();
 	//setteri

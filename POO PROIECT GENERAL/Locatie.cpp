@@ -21,8 +21,7 @@ Locatie::Locatie(const Locatie& x) {
 
 //metode
 int Locatie::locuriNeutilizate() { //in cazul in care sunt mai putine bilete decat locuri disponibile
-	//return nrLocuriDisponibile - Bilet::getNrBilete();
-	return 0;
+	return Zona::getNrLocuriDisponobile() - Bilet::getNrBilete();
 }
 void Locatie::acordareRating(float rating) { //rating=[1.0 stele; 5.0 stele]
 	if (rating >= 1 && rating <= 5) {

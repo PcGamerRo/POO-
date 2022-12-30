@@ -62,11 +62,12 @@ void Eveniment::evenimentRatat(int x, int y, int z) {
 		else cout << "Evenimentul nu a inceput inca!" << endl;
 	}
 }
-//void Eveniment::epuizareBilete(int x) {
-//	if (nrBileteDisponibile >= x)
-//		nrBileteDisponibile -= x;
-//	else cout << endl << "Nu sunt suficiente bilete! valoarea maxima este: " << nrBileteDisponibile << endl << endl;
-//}
+void Eveniment::epuizareBilete(int x) {
+	if (Bilet::getNrBilete() >= x)
+		Bilet::setNrBilete(Bilet::getNrBilete()-x);
+	else 
+		cout << endl << "Nu sunt suficiente bilete! valoarea maxima este: " << Bilet::getNrBilete() << endl << endl;
+}
 
 //setters
 void Eveniment::setDenumire(char* denumire) {

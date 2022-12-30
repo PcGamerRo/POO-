@@ -21,8 +21,9 @@ Bilet::Bilet(const Bilet& x) {
 }
 
 //metode
-void Bilet::checkValoare(int cantitate) {
-	cout << "Valoarea totala pentru " << cantitate << " bilete este : " << pret * cantitate;
+float Bilet::checkValoare(int cantitate) {
+	//cout << "Valoarea totala pentru " << cantitate << " bilete este : " << pret * cantitate;
+	return pret * cantitate;
 }
 void Bilet::aplicareReducereGenerala(float procente) {
 	pret = pret - pret * procente / 100;
