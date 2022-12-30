@@ -24,6 +24,7 @@ public:
 	void setTip(string tip);
 	void setPret(float x);
 	void setNumar(int x);
+	static void setNrBilete(int x);
 	//getteri
 	string getTip();
 	float getPret();

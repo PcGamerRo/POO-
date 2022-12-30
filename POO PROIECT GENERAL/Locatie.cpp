@@ -3,25 +3,26 @@
 Locatie::Locatie() {
 	denumireLocatie = "necunoscuta";
 	nrZone = 1;
-	nrLocuriDisponibile = 0;
+	//nrLocuriDisponibile = 0;
 	ratingLocatie = 5;
 }
-Locatie::Locatie(string denumire, int nrZone, int nrLocuriDisponibile, float rating) {
+Locatie::Locatie(string denumire, int nrZone, float rating) {
 	this->denumireLocatie = denumire;
 	this->nrZone = nrZone;
-	this->nrLocuriDisponibile = nrLocuriDisponibile;
+	//this->nrLocuriDisponibile = nrLocuriDisponibile;
 	this->ratingLocatie = rating;
 }
 Locatie::Locatie(const Locatie& x) {
 	denumireLocatie = x.denumireLocatie;
 	nrZone = x.nrZone;
-	nrLocuriDisponibile = x.nrLocuriDisponibile;
+	//nrLocuriDisponibile = x.nrLocuriDisponibile;
 	ratingLocatie = x.ratingLocatie;
 }
 
 //metode
 int Locatie::locuriNeutilizate() { //in cazul in care sunt mai putine bilete decat locuri disponibile
-	return nrLocuriDisponibile - Bilet::getNrBilete();
+	//return nrLocuriDisponibile - Bilet::getNrBilete();
+	return 0;
 }
 void Locatie::acordareRating(float rating) { //rating=[1.0 stele; 5.0 stele]
 	if (rating >= 1 && rating <= 5) {
@@ -44,11 +45,11 @@ void Locatie::setNrZone(int nrZone) {
 		this->nrZone = nrZone;
 	else cout << "Trebuie sa existe cel putin o zona!";
 }
-void Locatie::setNrLocuriDisponibile(int nrLocuriDisponibile) {
-	if (nrLocuriDisponibile >= 0)
-		this->nrLocuriDisponibile = nrLocuriDisponibile;
-	else cout << "Numarul de locuri nu poate fi negativ!";
-};
+//void Locatie::setNrLocuriDisponibile(int nrLocuriDisponibile) {
+//	if (nrLocuriDisponibile >= 0)
+//		this->nrLocuriDisponibile = nrLocuriDisponibile;
+//	else cout << "Numarul de locuri nu poate fi negativ!";
+//};
 void Locatie::setRating(float rating) {
 	if (rating >= 1 && rating <= 5)
 		this->ratingLocatie = rating;
@@ -59,7 +60,7 @@ void Locatie::setRating(float rating) {
 //getteri
 string Locatie::getDenumire() { return denumireLocatie; }
 int Locatie::getNrZone() { return nrZone; }
-int Locatie::getNrLocuriDisponobile() { return nrLocuriDisponibile; }
+//int Locatie::getNrLocuriDisponobile() { return nrLocuriDisponibile; }
 float Locatie::getRating() { return ratingLocatie; }
 
 //supraincarcari
@@ -85,7 +86,7 @@ istream& operator>>(istream& in, Locatie& x) {
 		in >> x.nrZone;
 	}
 
-	cout << "Numarul total de locuri: ";
+	/*cout << "Numarul total de locuri: ";
 	in >> x.nrLocuriDisponibile;
 	while (x.nrLocuriDisponibile < 0 || cin.fail() || x.nrLocuriDisponibile<Bilet::getNrBilete()) {
 		if (cin.fail())
@@ -96,14 +97,14 @@ istream& operator>>(istream& in, Locatie& x) {
 		cin.clear();
 		cin.ignore(100, '\n');
 		in >> x.nrLocuriDisponibile;
-	}
+	}*/
 
 	cout << "Rating locatie: ";
 	in >> x.ratingLocatie;
 	while (x.ratingLocatie < 1 || x.ratingLocatie>5 || cin.fail()) {
 		if (cin.fail())
 			cout << "Valoarea introdusa nu este un numar real! incercati din nou: ";
-		else cout << "Numarul de locuri nu poate fi negativ!";
+		else cout << "Ratingul locatiei trebuie sa fie cuprins intre 1 si 5!";
 		cin.clear();
 		cin.ignore(100, '\n');
 		in >> x.ratingLocatie;
@@ -116,7 +117,7 @@ ostream& operator<<(ostream& out, Locatie x) {
 	out << endl;
 	out << "Denumire locatie: " << x.denumireLocatie << endl;
 	out << "Numar zone / categorii: " << x.nrZone << endl;
-	out << "Numar total de locuri: " << x.nrLocuriDisponibile << endl;
+	//out << "Numar total de locuri: " << x.nrLocuriDisponibile << endl;
 	out << "Rating-ul locatiei este: " << x.ratingLocatie << endl;
 	out << endl << endl;
 	return out;
@@ -125,7 +126,7 @@ ostream& operator<<(ostream& out, Locatie x) {
 bool Locatie::operator==(const Locatie y) {
 	Locatie& x = *this;
 	if (x.denumireLocatie == y.denumireLocatie)
-		if (x.Locatie::nrLocuriDisponibile == y.Locatie::nrLocuriDisponibile)
+		//if (x.Locatie::nrLocuriDisponibile == y.Locatie::nrLocuriDisponibile)
 			if (x.nrZone == y.nrZone)
 				if (x.ratingLocatie == y.ratingLocatie)
 					return true;

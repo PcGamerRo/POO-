@@ -4,6 +4,7 @@ Zona::Zona() {
 	denumire = "necunoscuta";
 	nrLocuri = 1;
 	nrRanduri = 1;
+	nrLocuriDisponibile = 0;
 	locOcupat = new int[1]{ 0 };
 }
 Zona::Zona(string denumire, int nrL, int nrR) :Zona() {
@@ -11,6 +12,7 @@ Zona::Zona(string denumire, int nrL, int nrR) :Zona() {
 	this->nrLocuri = nrL;
 	this->nrRanduri = nrR;
 	locOcupat = new int[this->nrLocuri];
+	Zona::nrLocuriDisponibile += nrL;
 	//for (int i = 0; i < this->nrLocuri; i++) {
 	//	locOcupat[i] = nrLoc[i];
 	//}
@@ -45,6 +47,7 @@ void Zona::setNrLocuri(int nrL) {
 	if (nrL >= 1)
 		this->nrLocuri = nrL;
 	else cout << "Trebuie sa existe cel putin un loc!";
+	Zona::nrLocuriDisponibile += nrL;
 }
 void Zona::setNrRanduri(int nrR) {
 	if (nrR >= 1)
@@ -63,11 +66,19 @@ void Zona::setLocOcupat(int* nrLoc) {
 	else cout << "Sirul de numere nu poate fi unul nul!";
 }
 
+void Zona::setNrLocuriDisponibile(int nrLocuriDisponibile) {
+	if (nrLocuriDisponibile >= 0)
+		Zona::nrLocuriDisponibile = nrLocuriDisponibile;
+	else cout << "numarul de locuri nu poate fi negativ!";
+}
+
 //getteri
 string Zona::getDenumire() { return denumire; }
-int Zona::getNrL() { return nrLocuri; }
+int Zona::getNrL() { return nrLocuri; Zona::nrLocuriDisponibile += nrLocuri; }
 int Zona::getNrR() { return nrRanduri; }
 int* Zona::getLocOcupat() { return locOcupat; }
+int Zona::getNrLocuriDisponobile() { return Zona::nrLocuriDisponibile;}
+
 
 //supraincarcari
 istream& operator>>(istream& in, Zona& x) {
@@ -89,14 +100,17 @@ istream& operator>>(istream& in, Zona& x) {
 		cin.ignore(100, '\n');
 		in >> x.nrLocuri;
 	}
+	Zona::nrLocuriDisponibile += x.nrLocuri;
 
 	cout << "Numar randuri: ";
 	in >> x.nrRanduri;
-	while (cin.fail() || x.nrRanduri < 1) {
+	while (cin.fail() || x.nrRanduri < 1 || x.nrRanduri > x.nrLocuri) {
 		if (cin.fail())
 			cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
-		else
+		else if (x.nrRanduri < 1)
 			cout << "Trebuie sa existe cel putin un rand!";
+		else
+			cout << "Nu pot fi mai multe randuri decat locuri!";
 		cin.clear();
 		cin.ignore(100, '\n');
 		in >> x.nrRanduri;

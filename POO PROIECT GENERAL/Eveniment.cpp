@@ -213,12 +213,12 @@ istream& operator>>(istream& in, Eveniment& x) {
 
 	cout << "Numar categorii de bilete (VIP/NORMAL/etc...): ";
 	in >> x.nrCategoriiBilete;
-	while (cin.fail() || x.nrCategoriiBilete<0)
+	while (cin.fail() || x.nrCategoriiBilete<=0)
 	{
 		if (cin.fail())
 			cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
 		else
-			cout << "Valoarea nu poate fi negativa! incercati din nou: ";
+			cout << "Valoarea nu poate fi negativa sau null! incercati din nou: ";
 		cin.clear();
 		cin.ignore(100, '\n');
 		in >> x.nrCategoriiBilete;

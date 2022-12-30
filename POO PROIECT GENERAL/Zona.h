@@ -5,6 +5,7 @@ using namespace std;
 
 class Zona
 {
+	static int nrLocuriDisponibile;
 	string denumire;
 	int numarLocuriPeRand;
 	int nrLocuri;
@@ -25,12 +26,14 @@ public:
 	void setNrLocuri(int nrL);
 	void setNrRanduri(int nrR);
 	void setLocOcupat(int* nrLoc);
+	static void setNrLocuriDisponibile(int nrLocuriDisponibile);
 
 	//getteri
 	string getDenumire();
 	int getNrL();
 	int getNrR();
 	int* getLocOcupat();
+	static int getNrLocuriDisponobile();
 
 	//supraincarcari
 	friend istream& operator>>(istream&, Zona&);

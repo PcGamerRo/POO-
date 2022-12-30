@@ -49,6 +49,10 @@ void Bilet::setPret(float x) {
 }
 void Bilet::setNumar(int x) {
 	this->numar = x;
+	Bilet::nrBileteDisponibile += x;
+}
+void Bilet::setNrBilete(int x) {
+	Bilet::nrBileteDisponibile = x;
 }
 
 
@@ -65,20 +69,26 @@ istream& operator>>(istream& in, Bilet& x) {
 
 	cout << "Pret: ";
 	in >> x.pret;
-	while (cin.fail())
+	while (cin.fail() || x.pret<0)
 	{
 		cin.clear();
 		cin.ignore(100, '\n');
-		cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
+		if (x.pret < 0)
+			cout << "Pretul nu poate fi negativ!";
+		else
+			cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
 		in >> x.pret;
 	}
 	cout << "Numar exemplare: ";
 	in >> x.numar;
-	while (cin.fail())
+	while (cin.fail() || x.numar<=0)
 	{
 		cin.clear();
 		cin.ignore(100, '\n');
-		cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
+		if (x.numar <= 0)
+			cout << "trebuie sa existe cel putin un exemplar!";
+		else
+			cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
 		in >> x.numar;
 	}
 	Bilet::nrBileteDisponibile += x.numar;

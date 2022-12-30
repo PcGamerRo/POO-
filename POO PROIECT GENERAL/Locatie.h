@@ -7,7 +7,6 @@ using namespace std;
 
 class Locatie
 {
-	static int nrLocuriDisponibile;
 	string denumireLocatie="necunoscuta";
 	int nrZone=1;
 	float ratingLocatie=5;
@@ -15,7 +14,7 @@ class Locatie
 	//Zona* zone;
 public:
 	Locatie();
-	Locatie(string denumire, int nrZone, int nrLocuriDisponibile, float rating);
+	Locatie(string denumire, int nrZone, float rating);
 	Locatie(const Locatie& x);
 
 	//metode
@@ -25,13 +24,11 @@ public:
 	//setteri
 	void setDenumireLocatie(string denumire);
 	void setNrZone(int nrZone);
-	void setNrLocuriDisponibile(int nrLocuriDisponibile);
 	void setRating(float rating);
 
 	//gettteri
 	string getDenumire();
 	int getNrZone();
-	int getNrLocuriDisponobile();
 	float getRating();
 
 	//supraincarcari
