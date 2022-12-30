@@ -135,14 +135,14 @@ istream& operator>>(istream& in, Zona& x) {
 	return in;
 }
 ostream& operator<<(ostream& out, Zona x) {
-	out << endl;
+	//out << endl;
 	out << "Denumire zona: " << x.denumire << endl;
 	out << "Numar locuri: " << x.nrLocuri << endl;
 	out << "Numar randuri: " << x.nrRanduri << endl;
-	out << "Locuri ocupate: 1-ocupat 0-liber" << endl;
-	for (int i = 0; i < x.nrLocuri; i++) {
-		out << "locul " << i << ": " << x.locOcupat[i] << endl;
-	}
+	//out << "Locuri ocupate: 1-ocupat 0-liber" << endl;
+	//for (int i = 0; i < x.nrLocuri; i++) {
+	//	out << "locul " << i << ": " << x.locOcupat[i] << endl;
+	//}
 	out << endl << endl;
 	return out;
 }

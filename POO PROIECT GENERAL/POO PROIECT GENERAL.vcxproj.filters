@@ -55,6 +55,9 @@
     <Text Include="date.txt">
       <Filter>Header Files</Filter>
     </Text>
+    <Text Include="fisier.txt">
+      <Filter>Header Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <None Include="fisier.bin">

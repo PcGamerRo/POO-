@@ -143,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="date.txt" />
+    <Text Include="fisier.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="fisier.bin" />

@@ -140,7 +140,6 @@ istream& operator>>(istream& in, Eveniment& x) {
 	in.getline(buff, 50);
 	x.denumireEveniment = new char[strlen(buff) + 1];
 	strcpy_s(x.denumireEveniment, strlen(buff) + 1, buff);
-
 	//cout << "Numar bilete disponibile: ";
 	//in >> x.nrBileteDisponibile;
 	//while (cin.fail())

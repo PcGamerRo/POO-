@@ -97,7 +97,7 @@ istream& operator>>(istream& in, Bilet& x) {
 	return in;
 }
 ostream& operator<<(ostream& out, Bilet x) {
-	out << endl << endl;
+	//out << endl << endl;
 	out << "Tip bilet:  " << x.tipBilet << endl;
 	out << "Pret: " << x.pret << endl;
 	out << "Numar exemplare: " << x.numar << endl;

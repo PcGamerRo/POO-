@@ -13,18 +13,112 @@ int Bilet::nrBileteDisponibile = 0;
 int Zona::nrLocuriDisponibile = 0;
  
 void loadingScreen();
-void meniu();
-void functionalitati(Eveniment ev, Bilet bilete[], Locatie loc);
+void meniu1();
 void meniu2();
+void functionalitati(Eveniment ev, Bilet bilete[], Locatie loc);
+void meniu3();
+void modalitate_de_functionare();
 
 int main()
 {
-	meniu(); 
+	modalitate_de_functionare();
+	//meniu(); 
 	//de testat functionalitatile aplicatiei! (metodele generale)
 	//cin.fail() cases
 	return 0;
 }
 
+void modalitate_de_functionare() {
+	cout << "Alegeti metoda de introducere a datelor: " << endl;
+	cout << "1. Fisier text" << endl;
+	cout << "2. Consola" << endl;
+	cout << endl;
+	int switch_on;
+	cin >> switch_on;
+	//while (cin.get()!=0) {
+	//	cout << "introduceti un numar intreg!";
+	//	cin.clear();
+	//	cin.ignore(100, '\n');
+	//	cin >> switch_on;
+	//}
+	switch (switch_on)
+	{
+	case 1: {
+		meniu1();
+		break;
+	}
+	case 2: {
+		meniu2();
+		break;
+	}
+	default:
+		system("CLS");
+		cout << endl << endl << "Comanda necunoscuta. Incercati din nou!" << endl;
+		modalitate_de_functionare();
+		break;
+	}
+}
+
+void meniu1() {
+	Eveniment ev; 	Bilet bilete[100]; 	Locatie loc;	Zona zone[100];
+	ifstream f("date.txt");
+	f >> ev;
+	int categoriiBilete = ev.getNrCategorii();
+	for (int i = 0; i < categoriiBilete; i++) {
+		f >> bilete[i];
+	}
+	f >> loc;
+	int categoriiZone = loc.getNrZone();
+	for (int i = 0; i < categoriiZone; i++) {
+		f >> zone[i];
+	}
+	system("CLS");
+	cout << "*** PATTERN ***" << endl << endl;
+	cout << "denumire eveniment: " << endl;
+	cout << " zi: " << endl;
+	cout << "luna: " << endl;
+	cout << "an: " << endl;
+	cout << "ora: " << endl;
+	cout << "minute: " << endl;
+	cout << "numar categorii bilete: " << endl;
+
+	cout << endl;
+	cout << "**		Pentru fiecare bilet	 **" << endl;
+	cout << "Tip bilet:  " << endl;
+	cout << "Pret: " << endl;
+	cout << "Numar exemplare: " << endl;
+
+	cout << endl;
+	cout << "Denumire locatie: " << endl;
+	cout << "Numar zone / categorii: " << endl;
+	cout << "Rating-ul locatiei este: " << endl;
+
+	cout << endl;
+	cout << "**		Pentru fiecare zona	 **" << endl;
+	cout << "Denumire zona: " << endl;
+	cout << "Numar locuri: " << endl;
+	cout << "Numar randuri: " << endl;
+
+	//system("date.txt");
+	system("CLS");
+
+	cout << ev;
+
+	for (int i = 0; i < categoriiBilete; i++) {
+		cout << "	Info Bilet #" << i + 1 << endl;
+		cout << bilete[i];
+	}
+	cout << loc;
+	for (int i = 0; i < categoriiZone; i++) {
+		cout << "	Info Zona #" << i + 1 << endl;
+		cout <<  zone[i];
+	}
+	loadingScreen();
+	Generator gen;
+	functionalitati(ev, bilete, loc);
+	gen.BINARgenereazaBilete(bilete, categoriiBilete, zone, categoriiZone);
+	gen.TEXTgenereazaBilete(bilete, categoriiBilete, zone, categoriiZone);
+}
 void loadingScreen() {
 	Sleep(200);
 	cout << "M";
@@ -65,21 +159,29 @@ void loadingScreen() {
 	Sleep(500);
 
 }
-void meniu() {
+void meniu2() {
+	system("CLS");
 	int k;
 	Eveniment ev;
 	cin >> ev;
 	int categoriiBilete = ev.getNrCategorii();
+	cout << endl;
 	Bilet bilete[100];
 	for (int i = 0; i < categoriiBilete; i++) {
+		cout << "	Info Bilet #" << i+1 << endl;
 		cin >> bilete[i];
+		cout << endl;
 	}
+	cout << endl;
 	Locatie loc;
 	cin >> loc;
+	cout << endl;
 	Zona zone[100];
 	int categoriiZone = loc.getNrZone();
 	for (int i = 0; i < categoriiZone; i++) {
+		cout << "	Info Zona #" << i+1 << endl;
 		cin >> zone[i];
+		cout << endl;
 	}
 	cout << endl << "bilete disp = " << Bilet::getNrBilete();
 	cout << endl << "locuri disp = " << Zona::getNrLocuriDisponobile() << endl;
@@ -104,14 +206,15 @@ void meniu() {
 	}
 	loadingScreen();
 	Generator gen;
-	gen.genereazaBilete(bilete, categoriiBilete, zone, categoriiZone);
 	functionalitati(ev, bilete, loc);
-	gen.genereazaBilete(bilete, categoriiBilete, zone, categoriiZone);
+	gen.BINARgenereazaBilete(bilete, categoriiBilete, zone, categoriiZone);
+	gen.TEXTgenereazaBilete(bilete, categoriiBilete, zone, categoriiZone);
 }
 void functionalitati(Eveniment ev, Bilet bilete[], Locatie loc) {
 	int switch_on = 1;
 	string continua="y";
 	do {
+		system("CLS");
 		cout << endl << endl;
 		cout << "Lista functionalitati: " << endl;
 		cout << "1. Vedeti daca evemimentul a fost ratat sau nu. " << endl;
@@ -121,7 +224,7 @@ void functionalitati(Eveniment ev, Bilet bilete[], Locatie loc) {
 		cout << "5. Vedeti cate locuri nu vor fi utilizate in timpul evenimentului, in cazul deficitului de bilete. " << endl;
 		cout << "6. Acordati un rating locatiei. " << endl;
 		
-		cout << "Doriti sa testati o anumita functionalitate? y/n   ";
+		cout << endl << "Doriti sa testati o anumita functionalitate? y/n   ";
 		cin >> continua;
 		while (continua != "y" && continua != "n") {
 			cout << "'" << continua << "' nu reprezinta o optiune valabila.";
@@ -152,7 +255,8 @@ void functionalitati(Eveniment ev, Bilet bilete[], Locatie loc) {
 			cout << "Introduceti numarul de bilete pe care doriti sa il epuizati: ";
 			cin >> x;
 			ev.epuizareBilete(x);
-			cout << "Acum numarul de bilete ramase este: " << Bilet::getNrBilete();
+			if (x <= Bilet::getNrBilete())
+				cout << "Acum numarul de bilete ramase este: " << Bilet::getNrBilete();
 			break;
 		}
 		case 3: {
@@ -212,9 +316,11 @@ void functionalitati(Eveniment ev, Bilet bilete[], Locatie loc) {
 			cout << switch_on << " nu este o optiune valida!";
 			break;
 		}
+		cout << endl;
+		system("pause");
 	} while (continua == "y");
 }
-void meniu2() {
+void meniu3() {
 	Eveniment e1((char*)"meci fotbal", 27, 12, 2022, 20, 00, 2);
 	Locatie loc("stadion vaslui", 2,4.5);
 	Zona z1("tribuna 1", 100, 10);
@@ -228,5 +334,6 @@ void meniu2() {
 	cout << loc;
 
 	Generator gen;
-	gen.genereazaBilete(bilete, 2, zone, 2);
+	gen.BINARgenereazaBilete(bilete, 2, zone, 2);
+	gen.TEXTgenereazaBilete(bilete, 2, zone, 2);
 }
