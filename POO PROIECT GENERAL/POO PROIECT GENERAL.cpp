@@ -62,6 +62,7 @@ void modalitate_de_functionare() {
 void meniu1() {
 	Eveniment ev; 	Bilet bilete[100]; 	Locatie loc;	Zona zone[100];
 	ifstream f("date.txt");
+	system("date.txt");
 	f >> ev;
 	int categoriiBilete = ev.getNrCategorii();
 	for (int i = 0; i < categoriiBilete; i++) {
@@ -226,6 +227,7 @@ void functionalitati(Eveniment ev, Bilet bilete[], Locatie loc) {
 		
 		cout << endl << "Doriti sa testati o anumita functionalitate? y/n   ";
 		cin >> continua;
+
 		while (continua != "y" && continua != "n") {
 			cout << "'" << continua << "' nu reprezinta o optiune valabila.";
 			cout << "Va rugam incercati din nou!" << endl;
@@ -235,6 +237,14 @@ void functionalitati(Eveniment ev, Bilet bilete[], Locatie loc) {
 		if (continua == "y") {
 			cout << endl << "functionalitatea dorita este: ";
 			cin >> switch_on;
+			while (cin.fail())
+			{
+				if (cin.fail())
+					cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
+				cin.clear();
+				cin.ignore(100, '\n');
+				cin >> switch_on;
+			}
 		}
 		else break;
 
@@ -244,8 +254,40 @@ void functionalitati(Eveniment ev, Bilet bilete[], Locatie loc) {
 			int x, y, z;
 			cout << "Introduceti data curenta: " << endl;
 			cout << "Ziua: "; cin >> x;
+			while (x > 31 || x < 1) {
+				if (cin.fail())
+					cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
+				else
+					cout << "ziua trebuie sa fie cuprinsa intre 1 si 31! incercati din nou: ";
+				cin.clear();
+				cin.ignore(100, '\n');
+				cin >> x;
+			}
+
 			cout << "Luna: "; cin >> y;
+			while (y > 12 || y< 1) {
+				if (cin.fail())
+					cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
+				else
+					cout << "luna trebuie sa fie cuprinsa intre 1 si 12! incercati din nou: ";
+				cin.clear();
+				cin.ignore(100, '\n');
+				cin >> y;
+			}
+
+
 			cout << "An: "; cin >> z;
+			while (z < 0 || cin.fail())
+			{
+				if (cin.fail())
+					cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
+				else
+					cout << "anul nu poate fi negativ! incercati din nou: ";
+				cin.clear();
+				cin.ignore(100, '\n');
+				cin >> z;
+			}
+
 			ev.evenimentRatat(x, y, z);
 			cout << endl;
 			break;
@@ -254,6 +296,20 @@ void functionalitati(Eveniment ev, Bilet bilete[], Locatie loc) {
 			int x;
 			cout << "Introduceti numarul de bilete pe care doriti sa il epuizati: ";
 			cin >> x;
+			while (cin.fail() || x < 0)
+			{
+				if (cin.fail())
+					cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
+				else
+					cout << "Valoarea nu poate fi negativa! incercati din nou: ";
+				cin.clear();
+				cin.ignore(100, '\n');
+				cin >> x;
+			}
+
+
+
+
 			ev.epuizareBilete(x);
 			if (x <= Bilet::getNrBilete())
 				cout << "Acum numarul de bilete ramase este: " << Bilet::getNrBilete();
@@ -265,6 +321,16 @@ void functionalitati(Eveniment ev, Bilet bilete[], Locatie loc) {
 			for (int i = 0; i < ev.getNrCategorii(); i++) {
 				cout << "Numar de bilete dorit din categoria  '" << bilete[i].getTip() << "' : ";
 				cin >> x[i];
+				while (cin.fail() || x[i] < 0)
+				{
+					if (cin.fail())
+						cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
+					else
+						cout << "Valoarea nu poate fi negativa! incercati din nou: ";
+					cin.clear();
+					cin.ignore(100, '\n');
+					cin >> x[i];
+				}
 			}
 			cout << endl;
 
@@ -292,6 +358,17 @@ void functionalitati(Eveniment ev, Bilet bilete[], Locatie loc) {
 			}
 			cout << "Introduceti procentele aferente reducerii generale: ";
 			cin >> procente;
+			while (cin.fail() || procente < 0)
+			{
+				if (cin.fail())
+					cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
+				else
+					cout << "Valoarea nu poate fi negativa! incercati din nou: ";
+				cin.clear();
+				cin.ignore(100, '\n');
+				cin >> procente;
+			}
+
 			bilete[bilet-1].aplicareReducereGenerala(procente);
 			break;
 		}
@@ -306,9 +383,18 @@ void functionalitati(Eveniment ev, Bilet bilete[], Locatie loc) {
 			float rating;
 			cout << "Introduceti valoarea ratingului: ";
 			cin >> rating;
-			if (rating < 1 || rating>5)
-				cout << "Rating-ul trebuie sa aiba o valoare cuprinsa intre 1.0 si 5.0!";
-			else
+			while (cin.fail() || rating < 1 || rating>5)
+			{
+				if (cin.fail())
+					cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
+				else
+					cout << "Rating-ul trebuie sa aiba o valoare cuprinsa intre 1.0 si 5.0! incercati din nou: ";
+				cin.clear();
+				cin.ignore(100, '\n');
+				cin >> rating;
+			}
+
+			if (rating >= 1 || rating <= 5)
 				loc.acordareRating(rating);
 			break;
 		}

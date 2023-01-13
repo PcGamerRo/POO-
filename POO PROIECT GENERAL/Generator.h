@@ -41,7 +41,6 @@ public:
 			i++;
 		}
 	}
-
 	void BINARgenereazaBilete(Bilet b[], int x, Zona z[], int y) {
 		ofstream g("fisier.bin", ios::out | ios::binary);
 		int i = 0, j = 0, k = 0, counterLoc = 0, loc_pe_rand, rand = 0, loc_de_ocupat = 0;

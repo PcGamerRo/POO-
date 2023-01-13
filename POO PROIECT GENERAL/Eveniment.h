@@ -25,7 +25,7 @@ public:
 	static void epuizareBilete(int x);
 	//setters
 	void setDenumire(char* denumire);
-	static void setNrBileteDisponibile(int x);
+	//static void setNrBileteDisponibile(int x);
 	void setZi(int x);
 	void setLuna(int y);
 	void setAn(int z);
