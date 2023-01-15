@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="Bilet.cpp" />
     <ClCompile Include="Eveniment.cpp" />
+    <ClCompile Include="Generator.cpp" />
     <ClCompile Include="Locatie.cpp" />
     <ClCompile Include="POO PROIECT GENERAL.cpp" />
     <ClCompile Include="Zona.cpp" />
@@ -136,8 +137,16 @@
   <ItemGroup>
     <ClInclude Include="Bilet.h" />
     <ClInclude Include="Eveniment.h" />
+    <ClInclude Include="Generator.h" />
     <ClInclude Include="Locatie.h" />
     <ClInclude Include="Zona.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="date.txt" />
+    <Text Include="fisier.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fisier.bin" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

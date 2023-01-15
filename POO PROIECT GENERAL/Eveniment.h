@@ -9,7 +9,6 @@ class Eveniment
 {
 private:
 	char* denumireEveniment;
-	static int nrBileteDisponibile;
 	int nrCategoriiBilete;
 	int zi;
 	int luna;
@@ -18,7 +17,7 @@ private:
 	int minute;
 public:
 	Eveniment();
-	Eveniment(char* denumire, int zi, int luna, int an, int ora, int minute, int nrCategorii);
+	Eveniment(const char* denumire, int zi, int luna, int an, int ora, int minute, int nrCategorii);
 	Eveniment(const Eveniment& x);
 	~Eveniment();
 	//metode
@@ -26,7 +25,7 @@ public:
 	static void epuizareBilete(int x);
 	//setters
 	void setDenumire(char* denumire);
-	static void setNrBileteDisponibile(int x);
+	//static void setNrBileteDisponibile(int x);
 	void setZi(int x);
 	void setLuna(int y);
 	void setAn(int z);
@@ -34,14 +33,14 @@ public:
 	void setCategoriiBilete(int nr);
 	//getters
 	char* getDenumire();
-	static int getNrBilete();
+	//static int getNrBilete();
 	int getZi();
 	int getLuna();
 	int getAn();
 	int getOra();
 	int getMinute();
 	int getNrCategorii();
-	static int getBileteDisp();
+	//static int getBileteDisp();
 
 	//supraincarcari
 	friend istream& operator>>(istream&, Eveniment&);
