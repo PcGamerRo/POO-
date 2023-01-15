@@ -11,7 +11,7 @@ using namespace std;
 
 int Bilet::nrBileteDisponibile = 0;
 int Zona::nrLocuriDisponibile = 0;
- 
+
 void loadingScreen();
 void meniu1();
 void meniu2();
@@ -112,7 +112,7 @@ void meniu1() {
 	cout << loc;
 	for (int i = 0; i < categoriiZone; i++) {
 		cout << "	Info Zona #" << i + 1 << endl;
-		cout <<  zone[i];
+		cout << zone[i];
 	}
 	loadingScreen();
 	Generator gen;
@@ -169,7 +169,7 @@ void meniu2() {
 	cout << endl;
 	Bilet bilete[100];
 	for (int i = 0; i < categoriiBilete; i++) {
-		cout << "	Info Bilet #" << i+1 << endl;
+		cout << "	Info Bilet #" << i + 1 << endl;
 		cin >> bilete[i];
 		cout << endl;
 	}
@@ -180,7 +180,7 @@ void meniu2() {
 	Zona zone[100];
 	int categoriiZone = loc.getNrZone();
 	for (int i = 0; i < categoriiZone; i++) {
-		cout << "	Info Zona #" << i+1 << endl;
+		cout << "	Info Zona #" << i + 1 << endl;
 		cin >> zone[i];
 		cout << endl;
 	}
@@ -213,7 +213,7 @@ void meniu2() {
 }
 void functionalitati(Eveniment ev, Bilet bilete[], Locatie loc) {
 	int switch_on = 1;
-	string continua="y";
+	string continua = "y";
 	do {
 		system("CLS");
 		cout << endl << endl;
@@ -224,7 +224,7 @@ void functionalitati(Eveniment ev, Bilet bilete[], Locatie loc) {
 		cout << "4. Aplicati o reducere generala asupra unui tip de bilete. " << endl;
 		cout << "5. Vedeti cate locuri nu vor fi utilizate in timpul evenimentului, in cazul deficitului de bilete. " << endl;
 		cout << "6. Acordati un rating locatiei. " << endl;
-		
+
 		cout << endl << "Doriti sa testati o anumita functionalitate? y/n   ";
 		cin >> continua;
 
@@ -265,7 +265,7 @@ void functionalitati(Eveniment ev, Bilet bilete[], Locatie loc) {
 			}
 
 			cout << "Luna: "; cin >> y;
-			while (y > 12 || y< 1) {
+			while (y > 12 || y < 1) {
 				if (cin.fail())
 					cout << "Valoarea introdusa nu este un numar intreg! incercati din nou: ";
 				else
@@ -347,7 +347,7 @@ void functionalitati(Eveniment ev, Bilet bilete[], Locatie loc) {
 		case 4: {
 			float procente;
 			int bilet;
-			cout << "Carui tip de bilet doriti sa aplicati reducerea? "<<endl;
+			cout << "Carui tip de bilet doriti sa aplicati reducerea? " << endl;
 			for (int i = 0; i < ev.getNrCategorii(); i++) {
 				cout << i + 1 << " " << bilete[i].getTip() << endl;
 			}
@@ -369,7 +369,7 @@ void functionalitati(Eveniment ev, Bilet bilete[], Locatie loc) {
 				cin >> procente;
 			}
 
-			bilete[bilet-1].aplicareReducereGenerala(procente);
+			bilete[bilet - 1].aplicareReducereGenerala(procente);
 			break;
 		}
 		case 5: {
@@ -408,7 +408,7 @@ void functionalitati(Eveniment ev, Bilet bilete[], Locatie loc) {
 }
 void meniu3() {
 	Eveniment e1((char*)"meci fotbal", 27, 12, 2022, 20, 00, 2);
-	Locatie loc("stadion vaslui", 2,4.5);
+	Locatie loc("stadion vaslui", 2, 4.5);
 	Zona z1("tribuna 1", 100, 10);
 	Zona z2("tribuna 2", 100, 10);
 	Zona zone[2] = { z1,z2 };
